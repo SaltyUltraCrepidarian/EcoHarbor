@@ -12,7 +12,7 @@ export default function Footer() {
     return (
       <footer className="footer">
         <Link href={'/'} className="footer-button-loggedIn">
-          What&apos;s Available!
+          What&apos;s Available?
         </Link>
         <Link href={'/account'} className="footer-button-loggedIn">
           Account
