@@ -13,7 +13,7 @@ type Props = {
   donationData: OfferCardType[];
 };
 
-export default function page({ userData, donationData }: Props) {
+export default function AccountPage({ userData, donationData }: Props) {
   const [selection, setSelection] = useState('profile');
 
   const profile = 'profile';
@@ -26,34 +26,34 @@ export default function page({ userData, donationData }: Props) {
 
   return (
     <>
-    <section className='account-section'>
-      <div className="account-buttons-wrapper">
-        <button
-          className="account-button"
-          onClick={handleSelection}
-          name={profile}
-        >
-          Profile
-        </button>
-        <button
-          className="account-button"
-          onClick={handleSelection}
-          name={form}
-        >
-          Form
-        </button>
-        <button
-          className="account-button"
-          onClick={handleSelection}
-          name={giveaways}
-        >
-          Giveaways
-        </button>
-      </div>
-      {selection === profile && <Profile userData={userData}/>}
-      {selection === form && <AccountForm />}
-      {selection === giveaways && <Giveaways donationData={donationData}/>}
-      <Footer />
+      <section className="account-section">
+        <div className="account-buttons-wrapper">
+          <button
+            className="account-button"
+            onClick={handleSelection}
+            name={profile}
+          >
+            Profile
+          </button>
+          <button
+            className="account-button"
+            onClick={handleSelection}
+            name={form}
+          >
+            Form
+          </button>
+          <button
+            className="account-button"
+            onClick={handleSelection}
+            name={giveaways}
+          >
+            Giveaways
+          </button>
+        </div>
+        {selection === profile && <Profile userData={userData} />}
+        {selection === form && <AccountForm />}
+        {selection === giveaways && <Giveaways donationData={donationData} />}
+        <Footer />
       </section>
     </>
   );
