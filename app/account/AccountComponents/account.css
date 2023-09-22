@@ -1,0 +1,16 @@
+.account-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+    padding: 24px
+}
+
+.account-button {
+  padding: 4px;
+  width: 90px;
+  background-color: white;
+    border-radius: 6px;
+    border: 1px solid black;
+}
+.account-section{
+  padding-bottom: 60px;
+}

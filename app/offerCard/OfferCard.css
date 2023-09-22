@@ -1,0 +1,17 @@
+.offer-card-section {
+  background-image: linear-gradient(#ccc 70%, #eee);
+  border-radius: 8px;
+  margin: 0 16px 32px;
+  width: 100%;
+  max-width: 412px;
+  overflow: hidden;
+}
+
+.offer-card-info {
+  padding: 8px;
+}
+
+.offer-card-info p {
+  margin: 0;
+  padding: 0;
+}

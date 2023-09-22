@@ -1,0 +1,51 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* COLORS
+text colour:  #636363; 
+background colour: #eee
+card backgroud colour: #ccc,
+app-background: #fafafa
+
+signature-green: #C4DA94
+
+*/
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+head {
+  background-color: #fafafa;
+    /* background-color: whitesmoke; */
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.giveaway-main {
+  padding: 0 16px 80px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.offer-cards-main {
+  margin-top: 100px;
+  padding: 0 16px 80px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+}
+
+.business-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  margin: 0;
+}
