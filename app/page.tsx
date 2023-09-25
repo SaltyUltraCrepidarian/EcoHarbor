@@ -1,4 +1,5 @@
-import { PrismaClient } from '@prisma/client';
+export const dynamic = 'force-dynamic';
+
 import OfferCard from './offerCard/OfferCard';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
