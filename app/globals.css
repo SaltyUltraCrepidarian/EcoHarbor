@@ -3,30 +3,24 @@
 @tailwind components;
 @tailwind utilities;
 
-/* COLORS
-text colour:  #636363; 
-background colour: #eee
-card backgroud colour: #ccc,
-app-background: #fafafa
 
-signature-green: #C4DA94
-
-*/
 * {
   box-sizing: border-box;
 }
 
-html,
+
 body,
 head {
-  background-color: #fafafa;
-    /* background-color: whitesmoke; */
   margin: 0;
   padding: 0;
   height: 100vh;
   width: 100vw;
 }
 
+.button{
+  background: linear-gradient(90deg, #80B918 73.84%, #55A630,
+  );
+} 
 .giveaway-main {
   padding: 0 16px 80px;
   display: flex;

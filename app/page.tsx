@@ -27,16 +27,15 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-      <Banner/>
+      <Footer />
 
-      <main className="offer-cards-main">
+      <main className="offer-cards-main main">
         {donationInfo.map((donationOffer, index) => (
           <section className="offer-card-section" key={index}>
             <OfferCard donationOffer={donationOffer} isAdmin={false} />
           </section>
         ))}
       </main>
-      <Footer />
     </>
   );
 }

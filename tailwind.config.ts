@@ -23,19 +23,14 @@ const config: Config = {
       lg: '960px',
       xl: '1200px',
     },
-    xtend: {
+    extend: {
       colors: {
         primary: '#80B918',
-        secondary:'#EFF1F3',
-        third:'#55A630',
-        fourth:'#F9F7F3',
-        accent: '#2F8C05',
+        // secondary:'#EFF1F3',
+        // third:'#55A630',
+        // fourth:'#F9F7F3',
+        // accent: '#2F8C05',
       },
-      backgroundImage: {
-        site: "url('../app/assets/pattern.png')",
-        
-      },
-    
       plugins: [],
     },
   },
