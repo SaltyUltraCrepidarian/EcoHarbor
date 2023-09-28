@@ -1,14 +1,35 @@
 'use client';
-import React, { useState } from 'react';
-import './Registration.css';
-import { defaultRegistrationValues } from '@/app/account/AccountComponents/makeOfferDefaultValues';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import ImageUpload from '@/app/account/AccountComponents/ImageUpload';
+import { defaultRegistrationValues } from '@/app/account/AccountComponents/makeOfferDefaultValues';
+import { useState } from 'react';
 
 export default function Registration() {
+  const { register, handleSubmit } = useForm();
   const [registrationInfo, setRegistrationInfo] = useState(
     defaultRegistrationValues
   );
+  const router = useRouter();
+
+  // const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   router.push('/account');
+
+  //   try {
+  //     const res = await fetch('/api/registration', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(registrationInfo),
+  //     });
+
+  //     setRegistrationInfo(defaultRegistrationValues);
+  //     return res.text;
+  //   } catch (err) {
+  //     console.error('Failed to fetch data', err);
+  //   }
+  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegistrationInfo((prevState) => ({
@@ -16,83 +37,50 @@ export default function Registration() {
       [e.target.name]: e.target.value,
     }));
   };
-  const router = useRouter()
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-   router.push('/account')
-    
-    try {
-      const res = await fetch('/api/registration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(registrationInfo),
-      });
-
-      setRegistrationInfo(defaultRegistrationValues);
-      return res.text;
-      
-    } catch (err) {
-      console.error('Failed to fetch data', err);
-    }
-  };
-
   return (
-    <section className="make-offer-wrapper">
-      <form className="make-offer-form" onSubmit={handleSubmit}>
-        <p className="title"> Register</p>
+    <form
+      className="make-offer-form"
+      onSubmit={handleSubmit(async () => {
+        router.push('/account');
 
-        <div className="label-input-wrap">
-          <label>Business Name</label>
-          <input
-            type="text"
-            name="businessName"
-            onChange={handleChange}
-            value={registrationInfo.businessName}
-            required
-          />
-        </div>
+        try {
+          const res = await fetch('/api/registration', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(registrationInfo),
+          });
 
-        <div className="label-input-wrap">
-          <label>Contact Email</label>
-          <input
-            type="text"
-            name="businessEmail"
-            onChange={handleChange}
-            value={registrationInfo.businessEmail}
-            required
-          />
-        </div>
-
-        <div className="label-input-wrap">
-          <label>Contact Number</label>
-          <input
-            type="text"
-            name="businessPhoneNr"
-            onChange={handleChange}
-            value={registrationInfo.businessPhoneNr}
-            required
-          />
-        </div>
-
-        <div className="label-input-wrap">
-         <ImageUpload/>
-        </div>
-
-        <div className="label-input-wrap">
-          <label>Business Adress</label>
-          <input
-            type="text"
-            name="businessAdress"
-            onChange={handleChange}
-            value={registrationInfo.businessAdress}
-            required
-          />
-        </div>
-        <button className="account-button">Submit</button>
-      </form>
-    </section>
+          setRegistrationInfo(defaultRegistrationValues);
+          return res.text;
+        } catch (err) {
+          console.error('Failed to fetch data', err);
+        }
+      })}
+    >
+      <input
+        {...register('businessName')}
+        placeholder="Business Name"
+        onChange={handleChange}
+      />
+      <input
+        {...register('businessEmail')}
+        placeholder="Business Email"
+        onChange={handleChange}
+      />
+      <input
+        {...register('businessPhoneNr')}
+        placeholder="Contact Number"
+        onChange={handleChange}
+      />
+      {/* ImageUpload */}
+      <input
+        {...register('businessAdress')}
+        placeholder="Business Adress"
+        onChange={handleChange}
+      />
+      <input type="submit" />
+    </form>
   );
 }
