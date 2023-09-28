@@ -1,9 +1,9 @@
 export const dynamic = 'force-dynamic';
-
 import OfferCard from './offerCard/OfferCard';
 import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
 import prisma from '@/prisma/prismaConnect';
+import Banner from './Components/Banner';
 
 const fetchDonationInfo = async () => {
   const donationInfo = await prisma.donationInfo.findMany({
@@ -27,14 +27,15 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-      <main className="offer-cards-main">
+      <Banner/>
+      <Footer/>
+      <main className="offer-cards-main main">
         {donationInfo.map((donationOffer, index) => (
           <section className="offer-card-section" key={index}>
             <OfferCard donationOffer={donationOffer} isAdmin={false} />
           </section>
         ))}
       </main>
-      <Footer />
     </>
   );
 }

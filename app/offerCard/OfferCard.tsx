@@ -33,6 +33,7 @@ export default function OfferCard({ donationOffer, isAdmin }: Props) {
         />
         <div className="offer-card-info">
           {isAdmin && <button onClick={handleEdit}>Edit</button>}
+          {'posted'}
           <p>Description: {donationOffer.description}</p>
           <p>Available: {donationOffer.available}</p>
           <p>Location: {donationOffer.location}</p>
