@@ -5,6 +5,8 @@ import Button from './Button';
 import './Footer.css';
 import Link from 'next/link';
 import Banner from './Banner';
+import { motion } from 'framer-motion';
+import { animation } from '../../variants';
 
 export default function Footer() {
   const { data: Session, status } = useSession();
@@ -12,7 +14,6 @@ export default function Footer() {
   if (status === 'authenticated') {
     return (
       <footer className="footer button">
-
         <Link href={'/'} className="footer-button-loggedIn">
           What&apos;s Available?
         </Link>
@@ -24,14 +25,20 @@ export default function Footer() {
   } else {
     return (
       <>
-      <Banner/>
-      <footer className="footer button w-[200px] sm-mt-11 lg:w-[300px] lg:-mt-44 flex ml-16 ">
-        <Button
-          className="button-footer "
-          action={signIn}
-          text={'Join to Share'}
-        />
-      </footer>
+      
+        <motion.footer
+          variants={animation('up', 0.6)}
+          initial="hidden"
+          whileInView={'show'}
+          viewport={{ once: false, amount: 0.5 }}
+          className="footer button w-[250px] h-[45px] lg:w-[345px] -mt-52 flex lg:ml-36 rounded-md font-primary text-lg border-none "
+        >
+          <Button
+            className="button-footer "
+            action={signIn}
+            text={'Join to Share'}
+          />
+        </motion.footer>
       </>
     );
   }

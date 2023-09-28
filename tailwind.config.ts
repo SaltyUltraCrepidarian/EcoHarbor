@@ -28,7 +28,8 @@ const config: Config = {
         primary: '#80B918',
         // secondary:'#EFF1F3',
         // third:'#55A630',
-        // fourth:'#F9F7F3',
+         fourth:'#F9F7F3',
+         fifth:'#000'
         // accent: '#2F8C05',
       },
       plugins: [],

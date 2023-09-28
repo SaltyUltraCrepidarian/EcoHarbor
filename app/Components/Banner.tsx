@@ -8,38 +8,42 @@ import Footer from './Footer';
 
 export default function Banner() {
   return (
-    <section className="min-h-[85vh]  flex items-center banner ">
+    <section
+      className="min-h-[85vh] w-full lg:min-h-[80vh] flex items-center "
+      id="home"
+    >
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex md:flex-row  lg:mt-24 lg:flex-row lg:items-center lg:gap-x-12">
-          <div className="flex-1 text-center sm:hidden sm:flex-1 sm:flex-row sm:items-center md:items-center  lg:text-left font-primary leading-relaxed ">
-            <motion.p
-              variants={animation('up', 0.2)}
-              initial="hidden"
-              whileInView={'show'}
-              viewport={{ once: false, amount: 0.5 }}
-              className="text-[28px] -ml-10 xs:gap-x-10 lg:text-[40px] font-extralight"
-            >
-              Share the <span className=" font-bold"> bounty:</span>
-            </motion.p>
+        <div className="flex flex-col lg:mt-24 lg:flex-row lg:items-center lg:gap-x-12">
+          <div className="flex-1 text-center font-secondary lg:text-left ">
             <motion.p
               variants={animation('up', 0.3)}
               initial="hidden"
               whileInView={'show'}
-              viewport={{ once: false, amount: 0.7 }}
-              className="text-[24px] -ml-10 lg:text-[30px] font-extralight"
+              viewport={{ once: false, amount: 0.5 }}
+              className="text-[30px] font-primary font-light leading-[0.8] lg:text-[45px] mb-4 "
             >
-              Our <span className="font-bold">food</span> your{' '}
-              <span className="font-bold">table</span>
+              Share the <span className=" font-semibold"> bounty:</span>
+            </motion.p>
+
+            <motion.p
+              variants={animation('up', 0.4)}
+              initial="hidden"
+              whileInView={'show'}
+              viewport={{ once: false, amount: 0.5 }}
+              className="mb-6  text-[28px] font-primary font-extralight mx-w-lg mx-auto lg:mx-0 lg:text-[40px]"
+            >
+              Our <span className="font-semibold">food</span> your{' '}
+              <span className="font-semibold">table</span>
             </motion.p>
           </div>
-
+     
           <motion.div
-            variants={animation('left', 0.4)}
+            variants={animation('left', 0.5)}
             initial="hidden"
             whileInView={'show'}
-            className=" flex-1 flex-col w-[250px] lg:max-w-[600px]  lg:flex mr-9"
+            className="  hidden lg:flex flex-1 max-w-[320px] lg:max-w-[420px] "
           >
-            <Image src={food} alt="pattern" className=" -mt-20 mr-10 gap-x-10" />
+            <Image src={food} alt="food"/>
           </motion.div>
         </div>
       </div>

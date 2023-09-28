@@ -27,8 +27,8 @@ export default async function Home() {
   return (
     <>
       <Navbar />
-      <Footer />
-
+      <Banner/>
+      <Footer/>
       <main className="offer-cards-main main">
         {donationInfo.map((donationOffer, index) => (
           <section className="offer-card-section" key={index}>

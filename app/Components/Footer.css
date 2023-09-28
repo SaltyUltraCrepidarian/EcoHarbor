@@ -1,7 +1,7 @@
 .footer {
-  background: linear-gradient(190deg, #80B918 73.84%, #55A630);
-  /* position: fixed; */
+  background: linear-gradient(190deg, #80b918 73.84%, #55a630);
   /* bottom: 0; */
+  top: 0;
   height: 50px;
   display: flex;
   justify-content: center;
