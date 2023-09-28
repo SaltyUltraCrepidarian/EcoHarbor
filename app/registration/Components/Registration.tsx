@@ -41,6 +41,7 @@ export default function Registration() {
     <form
       className="make-offer-form"
       onSubmit={handleSubmit(async () => {
+        router.refresh()
         router.push('/account');
 
         try {
