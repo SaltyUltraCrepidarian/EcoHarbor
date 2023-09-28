@@ -3,11 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 * {
   box-sizing: border-box;
 }
-
 
 body,
 head {
@@ -15,12 +13,12 @@ head {
   padding: 0;
   height: 100vh;
   width: 100vw;
+  background-color: #F7F7F7ff;
 }
 
-.button{
-  background: linear-gradient(90deg, #80B918 73.84%, #55A630,
-  );
-} 
+.button {
+  background-color: linear-gradient(90deg, #80b918 73.84%, #55a630);
+}
 .giveaway-main {
   padding: 0 16px 80px;
   display: flex;
@@ -44,8 +42,11 @@ head {
   object-fit: cover;
   margin: 0;
 }
+
+
 layer base {
   body {
-    @apply font-primary text-lg leading-8 text-white;
+    @apply font-primary text-lg leading-8 ;
   }
+
 }

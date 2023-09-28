@@ -7,17 +7,18 @@ import Link from 'next/link';
 import Banner from './Banner';
 import { motion } from 'framer-motion';
 import { animation } from '../../variants';
+import Navbar from './Navbar';
 
 export default function Footer() {
   const { data: Session, status } = useSession();
 
   if (status === 'authenticated') {
     return (
-      <footer className="footer button">
-        <Link href={'/'} className="footer-button-loggedIn">
-          What&apos;s Available?
+      <footer className="footer flex flex-row justify-around text-secondary font-primary text-lg leading-[0.8] mx-auto">
+        <Link href={'/'} className="">
+          What&apos;s Available
         </Link>
-        <Link href={'/account'} className="footer-button-loggedIn">
+        <Link href={'/account'} className="">
           Account
         </Link>
       </footer>
@@ -25,16 +26,17 @@ export default function Footer() {
   } else {
     return (
       <>
-      
+       <Navbar />
+        <Banner />
         <motion.footer
           variants={animation('up', 0.6)}
           initial="hidden"
           whileInView={'show'}
           viewport={{ once: false, amount: 0.5 }}
-          className="footer button w-[250px] h-[45px] lg:w-[345px] -mt-52 flex lg:ml-36 rounded-md font-primary text-lg border-none "
+          className="  mx-auto footer text-lg text-secondary w-[250px] border-none rounded-md font-primary leading-[3]  -mt-72  lg:-mt-52 flex justify-center  lg:ml-32 lg:text-xl   lg:w-[345px] "
         >
           <Button
-            className="button-footer "
+            className=" "
             action={signIn}
             text={'Join to Share'}
           />

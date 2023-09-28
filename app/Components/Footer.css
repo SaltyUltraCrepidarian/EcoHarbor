@@ -3,8 +3,6 @@
   /* bottom: 0; */
   top: 0;
   height: 50px;
-  display: flex;
-  justify-content: center;
   align-items: center;
   color: #fff;
 }

@@ -26,8 +26,8 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
-      <Banner/>
+     
+    
       <Footer/>
       <main className="offer-cards-main main">
         {donationInfo.map((donationOffer, index) => (
