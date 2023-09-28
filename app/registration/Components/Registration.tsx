@@ -80,7 +80,7 @@ export default function Registration() {
       />
       <input
         type="file"
-        {...register('businessPhoneNr')}
+        {...register('businessImage')}
         onChange={handleFileChange}
       />
       <input
