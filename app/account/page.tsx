@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import React from 'react';
 import AccountPage from './AccountComponents/AccountPage';
 import { getServerSession } from 'next-auth';
@@ -40,7 +42,7 @@ export default async function page() {
   if (userData && donationData) {
     return (
       <>
-        <AccountPage userData={userData} donationData={donationData}/>
+        <AccountPage userData={userData} donationData={donationData} />
       </>
     );
   }
