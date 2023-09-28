@@ -11,25 +11,25 @@ export default function Registration() {
   );
   const router = useRouter();
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    router.push('/account');
+  // const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   router.push('/account');
 
-    try {
-      const res = await fetch('/api/registration', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(registrationInfo),
-      });
+  //   try {
+  //     const res = await fetch('/api/registration', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(registrationInfo),
+  //     });
 
-      setRegistrationInfo(defaultRegistrationValues);
-      return res.text;
-    } catch (err) {
-      console.error('Failed to fetch data', err);
-    }
-  };
+  //     setRegistrationInfo(defaultRegistrationValues);
+  //     return res.text;
+  //   } catch (err) {
+  //     console.error('Failed to fetch data', err);
+  //   }
+  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegistrationInfo((prevState) => ({
