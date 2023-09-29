@@ -64,12 +64,15 @@ export default function Registration() {
       })}
     >
       <input
-        {...register('businessName')}
+        {...register('businessName', { required: true })}
         placeholder="Business Name"
         onChange={handleChange}
       />
       <input
-        {...register('businessEmail')}
+        {...register('businessEmail', {
+          required: true,
+          pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        })}
         placeholder="Business Email"
         onChange={handleChange}
       />
@@ -84,7 +87,7 @@ export default function Registration() {
         onChange={handleFileChange}
       />
       <input
-        {...register('businessAdress')}
+        {...register('businessAdress', { required: true })}
         placeholder="Business Adress"
         onChange={handleChange}
       />
