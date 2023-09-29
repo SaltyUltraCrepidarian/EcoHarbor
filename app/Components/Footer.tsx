@@ -14,7 +14,7 @@ export default function Footer() {
 
   if (status === 'authenticated') {
     return (
-      <footer className="footer flex flex-row justify-around text-secondary font-primary text-lg leading-[0.8] mx-auto">
+      <footer className="footer w-screen flex flex-row justify-around text-secondary font-primary text-lg leading-[0.8] mx-auto">
         <Link href={'/'} className="">
           What&apos;s Available
         </Link>
@@ -33,7 +33,7 @@ export default function Footer() {
           initial="hidden"
           whileInView={'show'}
           viewport={{ once: false, amount: 0.5 }}
-          className="  mx-auto footer text-lg text-secondary w-[250px] border-none rounded-md font-primary leading-[3]  -mt-72  lg:-mt-52 flex justify-center  lg:ml-32 lg:text-xl   lg:w-[345px] "
+          className="  mx-auto  -mt-28 footer text-lg text-secondary w-[250px] border-none rounded-md font-primary leading-[3]   lg:-mt-52 flex justify-center  lg:ml-32 lg:text-xl   lg:w-[345px] "
         >
           <Button
             className=" "

@@ -9,12 +9,12 @@ import Footer from './Footer';
 export default function Banner() {
   return (
     <section
-      className="min-h-[85vh] w-full lg:min-h-[80vh] flex items-center "
+      className="min-h-[50vh] w-full lg:min-h-[80vh] flex items-center "
       id="home"
     >
       <div className="container mx-auto">
         <div className="flex flex-col lg:mt-24 lg:flex-row lg:items-center lg:gap-x-12">
-          <div className="flex-1 text-center font-secondary lg:text-left ">
+          <div className="flex-1 mt-9 text-center font-secondary lg:text-left ">
             <motion.p
               variants={animation('up', 0.3)}
               initial="hidden"

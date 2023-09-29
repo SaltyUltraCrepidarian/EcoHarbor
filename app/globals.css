@@ -17,7 +17,7 @@ head {
 }
 
 .button {
-  background-color: linear-gradient(90deg, #80b918 73.84%, #55a630);
+  background: linear-gradient(90deg, #80b918 73.84%, #55a630);
 }
 .giveaway-main {
   padding: 0 16px 80px;
@@ -47,6 +47,9 @@ head {
 layer base {
   body {
     @apply font-primary text-lg leading-8 ;
+  }
+  .btn-xs {
+    @apply h-[30px] px-4 text-xs overflow-hidden;
   }
 
 }
