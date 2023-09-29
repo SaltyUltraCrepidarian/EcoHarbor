@@ -20,3 +20,11 @@ export type User = {
   businessAdress: string;
   rating?: number;
 };
+
+export type RegistrationFormValues = {
+  businessName: string;
+  businessEmail: string;
+  businessPhoneNr: string;
+  businessImage: string; //most likely has to change
+  businessAdress: string;
+};

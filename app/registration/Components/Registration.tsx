@@ -3,9 +3,12 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { defaultRegistrationValues } from '@/app/account/AccountComponents/makeOfferDefaultValues';
 import { useState } from 'react';
+import { RegistrationFormValues } from '@/app/types';
 
 export default function Registration() {
-  const { register, handleSubmit } = useForm();
+  const form = useForm<RegistrationFormValues>();
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
   const [file, setFile] = useState<File | null>(null);
   const [registrationInfo, setRegistrationInfo] = useState(
     defaultRegistrationValues
@@ -64,33 +67,62 @@ export default function Registration() {
       })}
     >
       <input
-        {...register('businessName', { required: true })}
-        placeholder="Business Name"
+        type="text"
+        id="businessName"
+        {...register('businessName', {
+          required: {
+            value: true,
+            message: 'Please, insert your business name.',
+          },
+        })}
+        placeholder="Business Name *"
         onChange={handleChange}
       />
+      <p>{errors.businessName?.message}</p>
+
       <input
         {...register('businessEmail', {
-          required: true,
-          pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+          required: 'Please, insert your email.',
+          pattern: {
+            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+            message: 'Please, insert your email.',
+          },
         })}
-        placeholder="Business Email"
+        placeholder="Business Email *"
         onChange={handleChange}
       />
+      <p>{errors.businessEmail?.message}</p>
+
       <input
-        {...register('businessPhoneNr')}
+        {...register('businessPhoneNr', {
+          pattern: {
+            value: /^\+[\d\s]+$/g,
+            message: 'The phone number must have the format +xxxxx.',
+          },
+        })}
         placeholder="Contact Number"
         onChange={handleChange}
       />
+      <p>{errors.businessPhoneNr?.message}</p>
+
       <input
         type="file"
         {...register('businessImage')}
         onChange={handleFileChange}
       />
+
       <input
-        {...register('businessAdress', { required: true })}
-        placeholder="Business Adress"
+        {...register('businessAdress', {
+          required: {
+            value: true,
+            message: 'Please insert your business adress.',
+          },
+        })}
+        placeholder="Business Adress *"
         onChange={handleChange}
       />
+      <p>{errors.businessAdress?.message}</p>
+
       <input type="submit" />
     </form>
   );
