@@ -19,24 +19,31 @@ export default function Navbar() {
         'Content-Type': 'application/json',
       },
     });
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
     const response = await res.text();
-    
+    console.log(response)
     return response;
   };
 
   useEffect(() => {
-    if (status !== 'authenticated') return;
+    //console.log(status)
+    //if (status !== 'authenticated') return;
 
     (async () => {
-      const newUser = JSON.parse(await checkIfNewUser());
-      if (newUser && newUser.businessAdress === '') {
-        router.push('/registration')
+      const responseUser =await checkIfNewUser();
+      console.log('Api res'+responseUser)
+      if(responseUser.trim() === ''){
+        console.log('empty')
+      }
+      else{
+        const newUser = JSON.parse(responseUser)
+        console.log(newUser)
+        if (newUser && newUser.businessAdress === '') {
+          router.push('/registration')
+      }
+      // const newUser = JSON.parse(await checkIfNewUser());
       }
     })();
-  }, [session]);
+  }, []);
 
   return (
     <nav className="navbar">

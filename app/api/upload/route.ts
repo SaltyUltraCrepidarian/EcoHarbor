@@ -31,6 +31,7 @@ const getUserId = async () => {
 
 async function uploadFile(file: Blob, userId: number) {
   const uuidFileName = uuidv4() + '.jpg';
+  console.log(uuidFileName)
   const { data, error } = await supabase.storage
     .from('user-images')
     .upload(userId + '/' + uuidFileName, file);
@@ -59,12 +60,15 @@ const addImageUrlToUser = async (fileUrl: string) => {
 export async function POST(req: NextRequest, res: NextResponse) {
   const fileBuffer = await req.blob();
   const userId = await getUserId();
+  console.log(userId)
   const uploadedFile = userId && (await uploadFile(fileBuffer, userId));
+  console.log(uploadedFile)
   if (uploadedFile && uploadedFile.path) {
     const fileUrl =
       'https://kdkdfxqzjaigzdizmryv.supabase.co/storage/v1/object/public/user-images/' +
       uploadedFile.path;
-    addImageUrlToUser(fileUrl);
+    const status = addImageUrlToUser(fileUrl);
+    console.log(status)
   }
   return new Response('Image Uploaded', res);
 }
