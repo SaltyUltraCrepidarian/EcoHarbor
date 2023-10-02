@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-
-
 const ImageUpload = () => {
   const [file, setFile] = useState<File | null>(null);
 
@@ -33,7 +31,12 @@ const ImageUpload = () => {
   return (
     <div>
       <input type="file" accept="image/*" onChange={handleFileChange} />
-      <button onClick={handleSubmit}>Upload</button>
+      <button
+        className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0  mt-3 "
+        onClick={handleSubmit}
+      >
+        Upload
+      </button>
     </div>
   );
 };

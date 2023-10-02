@@ -22,34 +22,45 @@ export default function Profile({ userData }: Props) {
         <EditProfile handleEdit={handleEdit} userData={userData} />
       </>
     );
-    
+
   if (!editMode)
     return (
-      <section className="profile-wrapper">
-        <img src={userData.personalImage} alt="profile-image" />
-        <h3>Welcome, {userData.personalName.split(' ')[0]}!</h3>
+      <section className="p-[24px] font-primary leading-7 tracking-wider">
+        <h4 className=" font-semibold text-4xl">
+          Welcome, {userData.personalName.split(' ')[0]}!{' '}
+          <img
+            src={userData.personalImage}
+            alt="profile-image"
+            className=" w-16 h-16 rounded-md mb-4 inline"
+          />
+        </h4>
 
-        <p>PERSONAL INFO: </p>
-        <p>Personal name: {userData.personalName}</p>
+        <p className=" text-xl font-semibold">PERSONAL INFO: </p>
+        <p className="">Personal name: {userData.personalName}</p>
         <p>Personal email: {userData.personalEmail}</p>
-        <p>BUSINESS INFO (Shown):</p>
+        <p className="text-xl font-semibold mt-8 mb-8">BUSINESS INFO :</p>
         <img
           src={userData.businessImage}
           alt="business-image"
-          className="business-image"
+          className=" max-w-[250px] rounded-md mb-8"
         />
         <p>Business Name: {userData.businessName}</p>
         <p>Contact Email: {userData.businessEmail}</p>
         <p>Phone number: {userData.businessPhoneNr}</p>
         <p>Adress: {userData.businessAdress}</p>
         <p>Your Rating: {userData.rating}</p>
-
-        <Button
-          action={() => signOut({ callbackUrl: '/' })}
-          className="account-button"
-          text="Sign Out"
-        />
-        <Button action={handleEdit} className="account-button" text="Edit" />
+        <section className="flex flex-row w-[300px] mt-4">
+          <Button
+            action={() => signOut({ callbackUrl: '/' })}
+            className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0  "
+            text="Sign Out"
+          />
+          <Button
+            action={handleEdit}
+            className=" mx-auto flex justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] hover:bg-opacity-90 bg-primary border text-fourth -ml-11 "
+            text="Edit"
+          />
+        </section>
       </section>
     );
 }
