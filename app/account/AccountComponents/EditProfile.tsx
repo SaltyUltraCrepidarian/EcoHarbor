@@ -36,7 +36,8 @@ export default function EditProfile({ handleEdit, userData }: Props) {
       },
       body: JSON.stringify(profileValues),
     });
-    console.log(res)
+    setProfileValues(profileValues)
+    console.log(res);
     return res.text;
   };
 
@@ -59,8 +60,12 @@ export default function EditProfile({ handleEdit, userData }: Props) {
         <div className="label-input-wrap">
           <p>BUSINESS INFO (Shown):</p>
           <label>Business Image:</label>
-          <img className='business-image' src={userData.businessImage} alt="business-image" />
-          
+          <img
+            className=" w-[250px] rounded-md"
+            src={userData.businessImage}
+            alt="business-image"
+          />
+
           <ImageUpload />
         </div>
         <div className="label-input-wrap">
@@ -103,15 +108,23 @@ export default function EditProfile({ handleEdit, userData }: Props) {
             required
           />
         </div>
-        <button>Submit</button>
+        <button className=" mx-auto flex   justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
+          Submit
+        </button>
       </form>
-      <Button action={handleEdit} className="account-button" text="Cancel" />
+      <section className='flex fex-row w-[150px]'>
+        <Button
+          action={handleEdit}
+          className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0 mt-3 "
+          text="Cancel"
+        />
 
-      <Button
-        action={() => alert('Delete Selected')}
-        className="account-button"
-        text="Delete"
-      />
+        <Button
+          action={() => alert('Delete Selected')}
+          className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0  mt-3 "
+          text="Delete"
+        />
+      </section>
     </section>
   );
 }
