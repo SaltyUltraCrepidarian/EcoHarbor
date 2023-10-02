@@ -7,7 +7,9 @@ import prisma from '@/prisma/prismaConnect';
 // POST ONE OFFER CARD
 export async function POST(req: NextRequest, res: NextResponse) {
   const registrationInfo = await req.text();
+  console.log(registrationInfo)
   const registrationInfoData = await JSON.parse(registrationInfo);
+  console.log(registrationInfoData)
 
   const session = await getServerSession(authHandler);
 
