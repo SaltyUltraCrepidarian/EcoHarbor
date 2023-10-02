@@ -26,30 +26,30 @@ export default function AccountPage({ userData, donationData }: Props) {
 
   return (
     <>
-      <section className=" lg w-full overflow-hidden z-50">
-        <div className=" container mx-auto ">
+      <section className="w-screen">
+        <div className=" ">
           <Footer />
-          <div className="w-full fixed bottom-8 bg-primary/20 backdrop:blur   text-fourth text-black font-primary   h-[70px] backdrop-blur rounded-full max-w-[450px] mx-auto px-5 flex justify-between items-center text-xl">
+          <div className="container  font-primary rounded-md max-w-[450px] mx-auto px-5 flex justify-between  flex-row text-xl">
             <button
-              className="account-button"
+              className=" mx-auto flex justify-center rounded-md   font-light text-md items-center h-[40px] w-[100px] border-primary border text-primary   mt-8 "
               onClick={handleSelection}
               name={profile}
             >
               Profile
             </button>
             <button
-              className="account-button bottom-8 "
+              className=" mx-auto flex font-light rounded-md justify-center text-md items-center h-[40px] w-[100px] border-primary border text-primary    mt-8  "
               onClick={handleSelection}
               name={form}
             >
-              Form
+              Donate
             </button>
             <button
-              className="account-button"
+              className=" mx-auto flex justify-center rounded-md font-light text-md items-center h-[40px] w-[100px] border-primary border text-primary     mt-8 "
               onClick={handleSelection}
               name={giveaways}
             >
-              Giveaways
+              Donations
             </button>
           </div>
           <div>

@@ -27,10 +27,10 @@ const config: Config = {
       colors: {
         primary: '#80B918',
        secondary:'#EFF1F3',
-        // third:'#55A630',
+        third:'#55A630',
          fourth:'#F7F7F7ff',
-         fifth:'#000'
-        // accent: '#2F8C05',
+         fifth:'#000',
+        accent: '#2F8C05',
       },
       plugins: [],
     },
