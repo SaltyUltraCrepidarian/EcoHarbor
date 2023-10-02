@@ -52,7 +52,7 @@ export default function Registration() {
             },
             body: JSON.stringify(registrationInfo),
           });
-
+          setRegistrationInfo(registrationInfo)
           setRegistrationInfo(defaultRegistrationValues);
           return res.text;
         } catch (err) {
