@@ -7,6 +7,7 @@ import { authHandler } from '../api/auth/[...nextauth]/route';
 import { PrismaClient } from '@prisma/client';
 import { User } from '../types';
 import prisma from '@/prisma/prismaConnect';
+import Registration from '../registration/Components/Registration';
 
 const fetchUserData = async () => {
   const session = await getServerSession(authHandler);
@@ -43,6 +44,12 @@ export default async function page() {
     return (
       <>
         <AccountPage userData={userData} donationData={donationData} />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Registration />
       </>
     );
   }
