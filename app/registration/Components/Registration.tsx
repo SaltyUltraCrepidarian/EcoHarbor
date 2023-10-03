@@ -85,7 +85,8 @@ export default function Registration() {
           required: 'Please, insert your email.',
           pattern: {
             value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-            message: 'Please, insert your email.',
+            message:
+              'Please, insert your real email, in the format xxx@xxx.xxx.',
           },
         })}
         placeholder="Business Email *"
@@ -97,7 +98,12 @@ export default function Registration() {
         {...register('businessPhoneNr', {
           pattern: {
             value: /^\+[\d\s]+$/g,
-            message: 'The phone number must have the format +xxxxx.',
+            message: 'The phone number must have the format +xx xxxxxx.',
+          },
+          minLength: {
+            value: 6,
+            message:
+              'Please, insert your real phone number (with at least 6 digits).',
           },
         })}
         placeholder="Contact Number"
@@ -115,7 +121,7 @@ export default function Registration() {
         {...register('businessAdress', {
           required: {
             value: true,
-            message: 'Please insert your business adress.',
+            message: 'Please, insert your business adress.',
           },
         })}
         placeholder="Business Adress *"
