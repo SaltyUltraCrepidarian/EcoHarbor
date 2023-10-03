@@ -36,6 +36,9 @@ head {
   align-items: center;
 }
 
+.error-message {
+  color: red;
+}
 /* .business-image {
   width: 100%;
   height: 260px;

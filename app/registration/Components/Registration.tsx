@@ -59,7 +59,7 @@ export default function Registration() {
             },
             body: JSON.stringify(registrationInfo),
           });
-          setRegistrationInfo(registrationInfo)
+          setRegistrationInfo(registrationInfo);
           setRegistrationInfo(defaultRegistrationValues);
           return res.text;
         } catch (err) {
@@ -68,8 +68,12 @@ export default function Registration() {
       })}
     >
       <input
-        type="text"
-        id="businessName"
+        type="file"
+        {...register('businessImage')}
+        onChange={handleFileChange}
+      />
+
+      <input
         {...register('businessName', {
           required: {
             value: true,
@@ -79,7 +83,7 @@ export default function Registration() {
         placeholder="Business Name *"
         onChange={handleChange}
       />
-      <p>{errors.businessName?.message}</p>
+      <p className="error-message">{errors.businessName?.message}</p>
 
       <input
         {...register('businessEmail', {
@@ -93,7 +97,7 @@ export default function Registration() {
         placeholder="Business Email *"
         onChange={handleChange}
       />
-      <p>{errors.businessEmail?.message}</p>
+      <p className="error-message">{errors.businessEmail?.message}</p>
 
       <input
         {...register('businessPhoneNr', {
@@ -110,13 +114,7 @@ export default function Registration() {
         placeholder="Contact Number"
         onChange={handleChange}
       />
-      <p>{errors.businessPhoneNr?.message}</p>
-
-      <input
-        type="file"
-        {...register('businessImage')}
-        onChange={handleFileChange}
-      />
+      <p className="error-message">{errors.businessPhoneNr?.message}</p>
 
       <input
         {...register('businessAdress', {
@@ -128,7 +126,7 @@ export default function Registration() {
         placeholder="Business Adress *"
         onChange={handleChange}
       />
-      <p>{errors.businessAdress?.message}</p>
+      <p className="error-message">{errors.businessAdress?.message}</p>
 
       <input type="submit" />
     </form>

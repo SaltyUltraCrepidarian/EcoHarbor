@@ -1,7 +1,9 @@
 import Button from '@/app/Components/Button';
-import { User } from '@/app/types';
+import { RegistrationFormValues, User } from '@/app/types';
 import React, { useState } from 'react';
 import ImageUpload from './ImageUpload';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   handleEdit: Function;
@@ -9,6 +11,12 @@ type Props = {
 };
 
 export default function EditProfile({ handleEdit, userData }: Props) {
+  const router = useRouter();
+
+  const form = useForm<RegistrationFormValues>();
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
+
   const [profileValues, setProfileValues] = useState<User>({
     personalImage: userData.personalImage,
     personalName: userData.personalName,
@@ -27,23 +35,39 @@ export default function EditProfile({ handleEdit, userData }: Props) {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // e.preventDefault();
-    const res = await fetch('/api/edit-profile', {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(profileValues),
-    });
-    setProfileValues(profileValues)
-    console.log(res);
-    return res.text;
-  };
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   // e.preventDefault();
+  //   const res = await fetch('/api/edit-profile', {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(profileValues),
+  //   });
+  //   setProfileValues(profileValues)
+  //   console.log(res);
+  //   return res.text;
+  // };
 
   return (
     <section className="profile-wrapper">
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit(async () => {
+          const res = await fetch('/api/edit-profile', {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(profileValues),
+          });
+          setProfileValues(profileValues);
+          console.log(res);
+          if (res.status === 200) {
+            window.location.reload();
+          }
+          return res.text;
+        })}
+      >
         <img src={userData.personalImage} alt="profile-image" />
         <h3>Welcome, {userData.personalName.split(' ')[0]}!</h3>
         <p>PERSONAL INFO: </p>
@@ -71,48 +95,82 @@ export default function EditProfile({ handleEdit, userData }: Props) {
         <div className="label-input-wrap">
           <label>Business Name:</label>
           <input
-            type="text"
-            name="businessName"
+            {...register('businessName', {
+              required: {
+                value: true,
+                message: 'Please, insert your business name.',
+              },
+            })}
+            placeholder="Business Name *"
             onChange={handleOnChange}
             value={profileValues.businessName}
-            required
           />
+          <p className="error-message">{errors.businessName?.message}</p>
         </div>
+
         <div className="label-input-wrap">
           <label>Business Email:</label>
           <input
-            type="text"
-            name="businessEmail"
+            {...register('businessEmail', {
+              required: 'Please, insert your email.',
+              pattern: {
+                value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                message:
+                  'Please, insert your real email, in the format xxx@xxx.xxx.',
+              },
+            })}
+            placeholder="Business Email *"
             onChange={handleOnChange}
             value={profileValues.businessEmail}
-            required
           />
+          <p className="error-message">{errors.businessEmail?.message}</p>
         </div>
+
         <div className="label-input-wrap">
           <label>Phone Number:</label>
           <input
-            type="text"
-            name="businessPhoneNr"
+            {...register('businessPhoneNr', {
+              pattern: {
+                value: /^\+[\d\s]+$/g,
+                message: 'The phone number must have the format +xx xxxxxx.',
+              },
+              minLength: {
+                value: 6,
+                message:
+                  'Please, insert your real phone number (with at least 6 digits).',
+              },
+            })}
+            placeholder="Contact Number"
             onChange={handleOnChange}
             value={profileValues.businessPhoneNr}
-            required
           />
+          <p className="error-message">{errors.businessPhoneNr?.message}</p>
         </div>
+
         <div className="label-input-wrap">
           <label>Business Adress:</label>
           <input
-            type="text"
-            name="businessAdress"
+            {...register('businessAdress', {
+              required: {
+                value: true,
+                message: 'Please, insert your business adress.',
+              },
+            })}
+            placeholder="Business Adress *"
             onChange={handleOnChange}
             value={profileValues.businessAdress}
-            required
           />
+          <p className="error-message">{errors.businessAdress?.message}</p>
         </div>
-        <button className=" mx-auto flex   justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
+
+        <button
+          type="submit"
+          className=" mx-auto flex   justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  "
+        >
           Submit
         </button>
       </form>
-      <section className='flex fex-row w-[150px]'>
+      <section className="flex fex-row w-[150px]">
         <Button
           action={handleEdit}
           className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0 mt-3 "
