@@ -22,11 +22,12 @@ export default function Registration() {
     }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      setFile(selectedFile);
+      await setFile(selectedFile);
     }
+    console.log('this is file: ', file);
   };
 
   return (
