@@ -3,33 +3,17 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { defaultRegistrationValues } from '@/app/account/AccountComponents/makeOfferDefaultValues';
 import { useState } from 'react';
+import { RegistrationFormValues } from '@/app/types';
 
 export default function Registration() {
-  const { register, handleSubmit } = useForm();
+  const form = useForm<RegistrationFormValues>();
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
+  const [file, setFile] = useState<File | null>(null);
   const [registrationInfo, setRegistrationInfo] = useState(
     defaultRegistrationValues
   );
   const router = useRouter();
-
-  // const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   router.push('/account');
-
-  //   try {
-  //     const res = await fetch('/api/registration', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(registrationInfo),
-  //     });
-
-  //     setRegistrationInfo(defaultRegistrationValues);
-  //     return res.text;
-  //   } catch (err) {
-  //     console.error('Failed to fetch data', err);
-  //   }
-  // };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRegistrationInfo((prevState) => ({
@@ -37,12 +21,35 @@ export default function Registration() {
       [e.target.name]: e.target.value,
     }));
   };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      await setFile(selectedFile);
+    }
+    console.log('this is file: ', file);
+  };
+
   return (
     <form
       className="make-offer-form"
       onSubmit={handleSubmit(async () => {
-        router.refresh()
+        router.refresh();
         router.push('/account');
+
+        if (file) {
+          try {
+            const response = await fetch('/api/upload', {
+              method: 'POST',
+              body: file,
+              headers: {
+                'Content-Type': 'image/jpeg',
+              },
+            });
+          } catch (error) {
+            console.error('Error:', error);
+          }
+        }
 
         try {
           const res = await fetch('/api/registration', {
@@ -52,7 +59,7 @@ export default function Registration() {
             },
             body: JSON.stringify(registrationInfo),
           });
-          setRegistrationInfo(registrationInfo)
+          setRegistrationInfo(registrationInfo);
           setRegistrationInfo(defaultRegistrationValues);
           return res.text;
         } catch (err) {
@@ -61,26 +68,66 @@ export default function Registration() {
       })}
     >
       <input
-        {...register('businessName')}
-        placeholder="Business Name"
+        type="file"
+        {...register('businessImage')}
+        onChange={handleFileChange}
+      />
+
+      <input
+        {...register('businessName', {
+          required: {
+            value: true,
+            message: 'Please, insert your business name.',
+          },
+        })}
+        placeholder="Business Name *"
         onChange={handleChange}
       />
+      <p className="error-message">{errors.businessName?.message}</p>
+
       <input
-        {...register('businessEmail')}
-        placeholder="Business Email"
+        {...register('businessEmail', {
+          required: 'Please, insert your email.',
+          pattern: {
+            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+            message:
+              'Please, insert your real email, in the format xxx@xxx.xxx.',
+          },
+        })}
+        placeholder="Business Email *"
         onChange={handleChange}
       />
+      <p className="error-message">{errors.businessEmail?.message}</p>
+
       <input
-        {...register('businessPhoneNr')}
+        {...register('businessPhoneNr', {
+          pattern: {
+            value: /^\+[\d\s]+$/g,
+            message: 'The phone number must have the format +xx xxxxxx.',
+          },
+          minLength: {
+            value: 6,
+            message:
+              'Please, insert your real phone number (with at least 6 digits).',
+          },
+        })}
         placeholder="Contact Number"
         onChange={handleChange}
       />
-      {/* ImageUpload */}
+      <p className="error-message">{errors.businessPhoneNr?.message}</p>
+
       <input
-        {...register('businessAdress')}
-        placeholder="Business Adress"
+        {...register('businessAdress', {
+          required: {
+            value: true,
+            message: 'Please, insert your business adress.',
+          },
+        })}
+        placeholder="Business Adress *"
         onChange={handleChange}
       />
+      <p className="error-message">{errors.businessAdress?.message}</p>
+
       <input type="submit" />
     </form>
   );
