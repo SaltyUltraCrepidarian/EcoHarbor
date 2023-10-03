@@ -25,20 +25,19 @@ export default function OfferCard({ donationOffer, isAdmin }: Props) {
 
   if (!editMode)
     return (
-      <>
+      <section className='flex rounded-md items-center mx-auto overflow-hidden'>
         <img
-          className="business-image"
+          className="business-image border-r h-[250px] max-w-[200px] object-cover  p-0      "
           src={donationOffer.cardBusinessImage}
           alt="do-better-next-time"
         />
-        <div className="offer-card-info">
+        <div className="offer-card-info font-primary font-light max-w-[200px] tracking-wide ">
           {isAdmin && <button onClick={handleEdit}>Edit</button>}
-          {'posted'}
           <p>Description: {donationOffer.description}</p>
           <p>Available: {donationOffer.available}</p>
           <p>Location: {donationOffer.location}</p>
           <p>About: {donationOffer.about}</p>
         </div>
-      </>
+      </section>
     )
 }
