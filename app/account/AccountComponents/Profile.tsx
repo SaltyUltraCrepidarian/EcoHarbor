@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import './Profile.css';
 import { User } from '@/app/types';
 import EditProfile from './EditProfile';
+import Registration from '@/app/registration/Components/Registration';
 
 type Props = {
   userData: User;
@@ -15,6 +16,13 @@ export default function Profile({ userData }: Props) {
   const handleEdit = () => {
     setEditMode(!editMode);
   };
+
+  if (!userData)
+    return (
+      <>
+        <Registration />
+      </>
+    );
 
   if (editMode)
     return (
