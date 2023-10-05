@@ -44,7 +44,6 @@ export default function EditProfile({ handleEdit, userData }: Props) {
             body: JSON.stringify(profileValues),
           });
           setProfileValues(profileValues);
-          console.log(res);
           if (res.status === 200) {
             window.location.reload();
           }

@@ -15,9 +15,7 @@ export default function Registration() {
     businessImage:
       'https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc',
   });
-  // const [registrationInfo, setRegistrationInfo] = useState(
-  //   defaultRegistrationValues
-  // );
+
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,14 +24,6 @@ export default function Registration() {
       [e.target.name]: e.target.value,
     }));
   };
-
-  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const selectedFile = e.target.files?.[0];
-  //   if (selectedFile) {
-  //     await setFile(selectedFile);
-  //   }
-  //   console.log('this is file: ', file);
-  // };
 
   return (
     <form

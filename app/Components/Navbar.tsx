@@ -20,27 +20,16 @@ export default function Navbar() {
       },
     });
     const response = await res.text();
-    console.log(response)
     return response;
   };
 
   useEffect(() => {
-    //console.log(status)
-    //if (status !== 'authenticated') return;
-
     (async () => {
-      const responseUser =await checkIfNewUser();
-      console.log('Api res'+responseUser)
-      if(responseUser.trim() === ''){
-        console.log('empty')
-      }
-      else{
-        const newUser = JSON.parse(responseUser)
-        console.log(newUser)
-        if (newUser && newUser.businessAdress === '') {
-          router.push('/registration')
-      }
-      // const newUser = JSON.parse(await checkIfNewUser());
+      const responseUser = await checkIfNewUser();
+
+      const newUser = JSON.parse(responseUser);
+      if (newUser && newUser.businessAdress === '') {
+        router.push('/registration');
       }
     })();
   }, []);
