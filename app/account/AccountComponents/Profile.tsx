@@ -13,16 +13,21 @@ type Props = {
 export default function Profile({ userData }: Props) {
   const [editMode, setEditMode] = useState(false);
 
+  // const defaultProfileImage =
+  //   'https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc';
+
   const handleEdit = () => {
     setEditMode(!editMode);
   };
+  console.log('This is the businessImage: ', userData.businessImage);
+  console.log('This is the personalImage: ', userData.personalImage);
 
-  if (!userData)
-    return (
-      <>
-        <Registration />
-      </>
-    );
+  // if (!userData)
+  //   return (
+  //     <>
+  //       <Registration />
+  //     </>
+  //   );
 
   if (editMode)
     return (
@@ -49,9 +54,21 @@ export default function Profile({ userData }: Props) {
         <p className="text-xl font-semibold mt-8 mb-8">BUSINESS INFO :</p>
         <img
           src={userData.businessImage}
+          // src="./pattern.png"
+          // src={
+          //   userData.businessImage ? userData.businessImage : './pattern.png'
+          // }
+          // src={
+          //   userData.businessImage
+          //     ? userData.businessImage
+          //     : defaultProfileImage
+          // }
+          // src={userData.businessImage || defaultProfileImage}
+          // src={defaultProfileImage}
           alt="business-image"
           className=" max-w-[250px] rounded-md mb-8"
         />
+
         <p>Business Name: {userData.businessName}</p>
         <p>Contact Email: {userData.businessEmail}</p>
         <p>Phone number: {userData.businessPhoneNr}</p>

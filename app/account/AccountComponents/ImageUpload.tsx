@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ImageUpload = () => {
   const [file, setFile] = useState<File | null>(null);
+
+  // useEffect(() => {
+  //   const initialFile = new File(
+  //     [''],
+  //     'app/assets/Eco-harbor-1default-profile-image.jpeg',
+  //     { type: 'image/jpeg' }
+  //   );
+  //   setFile(initialFile);
+  // }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -22,6 +31,7 @@ const ImageUpload = () => {
             'Content-Type': 'image/jpeg',
           },
         });
+        return response;
       } catch (error) {
         console.error('Error:', error);
       }

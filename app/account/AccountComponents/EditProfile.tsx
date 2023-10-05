@@ -11,8 +11,6 @@ type Props = {
 };
 
 export default function EditProfile({ handleEdit, userData }: Props) {
-  const router = useRouter();
-
   const form = useForm<RegistrationFormValues>();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;

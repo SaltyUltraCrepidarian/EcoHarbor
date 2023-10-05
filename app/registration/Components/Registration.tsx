@@ -10,9 +10,14 @@ export default function Registration() {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const [file, setFile] = useState<File | null>(null);
-  const [registrationInfo, setRegistrationInfo] = useState(
-    defaultRegistrationValues
-  );
+  const [registrationInfo, setRegistrationInfo] = useState({
+    ...defaultRegistrationValues,
+    businessImage:
+      'https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc',
+  });
+  // const [registrationInfo, setRegistrationInfo] = useState(
+  //   defaultRegistrationValues
+  // );
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +27,13 @@ export default function Registration() {
     }));
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (selectedFile) {
-      await setFile(selectedFile);
-    }
-    console.log('this is file: ', file);
-  };
+  // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const selectedFile = e.target.files?.[0];
+  //   if (selectedFile) {
+  //     await setFile(selectedFile);
+  //   }
+  //   console.log('this is file: ', file);
+  // };
 
   return (
     <form
@@ -37,19 +42,10 @@ export default function Registration() {
         router.refresh();
         router.push('/account');
 
-        if (file) {
-          try {
-            const response = await fetch('/api/upload', {
-              method: 'POST',
-              body: file,
-              headers: {
-                'Content-Type': 'image/jpeg',
-              },
-            });
-          } catch (error) {
-            console.error('Error:', error);
-          }
-        }
+        // const initialFile = new File([''], './pattern.png', {
+        //   type: 'image/png',
+        // });
+        // setFile(initialFile);
 
         try {
           const res = await fetch('/api/registration', {
@@ -60,18 +56,27 @@ export default function Registration() {
             body: JSON.stringify(registrationInfo),
           });
           setRegistrationInfo(registrationInfo);
-          setRegistrationInfo(defaultRegistrationValues);
+          // setRegistrationInfo(defaultRegistrationValues);
+
+          // const response = await fetch('/api/upload', {
+          //   method: 'POST',
+          //   body: file,
+          //   headers: {
+          //     // 'Content-Type': 'image/png', - could it be that?
+          //     'Content-Type': 'image/jpeg',
+          //   },
+          // });
           return res.text;
         } catch (err) {
           console.error('Failed to fetch data', err);
         }
       })}
     >
-      <input
+      {/* <input
         type="file"
         {...register('businessImage')}
         onChange={handleFileChange}
-      />
+      /> */}
 
       <input
         {...register('businessName', {
