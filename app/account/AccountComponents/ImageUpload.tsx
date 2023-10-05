@@ -31,6 +31,9 @@ const ImageUpload = () => {
             'Content-Type': 'image/jpeg',
           },
         });
+        if (response.status === 200) {
+          window.location.reload();
+        }
         return response;
       } catch (error) {
         console.error('Error:', error);
