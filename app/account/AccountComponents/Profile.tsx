@@ -15,9 +15,6 @@ export default function Profile({ userData }: Props) {
   const [editMode, setEditMode] = useState(false);
   const [imageUploadMode, setImageUploadMode] = useState(false);
 
-  // const defaultProfileImage =
-  //   'https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc';
-
   const handleEdit = () => {
     setEditMode(!editMode);
   };
@@ -25,13 +22,6 @@ export default function Profile({ userData }: Props) {
   const handleImageUpload = () => {
     setImageUploadMode(!imageUploadMode);
   };
-
-  // if (!userData)
-  //   return (
-  //     <>
-  //       <Registration />
-  //     </>
-  //   );
 
   if (editMode)
     return (
@@ -70,17 +60,6 @@ export default function Profile({ userData }: Props) {
           <>
             <img
               src={userData.businessImage}
-              // src="./pattern.png"
-              // src={
-              //   userData.businessImage ? userData.businessImage : './pattern.png'
-              // }
-              // src={
-              //   userData.businessImage
-              //     ? userData.businessImage
-              //     : defaultProfileImage
-              // }
-              // src={userData.businessImage || defaultProfileImage}
-              // src={defaultProfileImage}
               alt="business-image"
               className=" max-w-[250px] rounded-md mb-8"
             />

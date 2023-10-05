@@ -42,11 +42,6 @@ export default function Registration() {
         router.refresh();
         router.push('/account');
 
-        // const initialFile = new File([''], './pattern.png', {
-        //   type: 'image/png',
-        // });
-        // setFile(initialFile);
-
         try {
           const res = await fetch('/api/registration', {
             method: 'POST',
@@ -56,28 +51,12 @@ export default function Registration() {
             body: JSON.stringify(registrationInfo),
           });
           setRegistrationInfo(registrationInfo);
-          // setRegistrationInfo(defaultRegistrationValues);
-
-          // const response = await fetch('/api/upload', {
-          //   method: 'POST',
-          //   body: file,
-          //   headers: {
-          //     // 'Content-Type': 'image/png', - could it be that?
-          //     'Content-Type': 'image/jpeg',
-          //   },
-          // });
           return res.text;
         } catch (err) {
           console.error('Failed to fetch data', err);
         }
       })}
     >
-      {/* <input
-        type="file"
-        {...register('businessImage')}
-        onChange={handleFileChange}
-      /> */}
-
       <input
         {...register('businessName', {
           required: {

@@ -3,7 +3,6 @@ import { RegistrationFormValues, User } from '@/app/types';
 import React, { useState } from 'react';
 import ImageUpload from './ImageUpload';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 
 type Props = {
   handleEdit: Function;
@@ -32,20 +31,6 @@ export default function EditProfile({ handleEdit, userData }: Props) {
       [e.target.name]: e.target.value,
     }));
   };
-
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   // e.preventDefault();
-  //   const res = await fetch('/api/edit-profile', {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(profileValues),
-  //   });
-  //   setProfileValues(profileValues)
-  //   console.log(res);
-  //   return res.text;
-  // };
 
   return (
     <section className="profile-wrapper">
