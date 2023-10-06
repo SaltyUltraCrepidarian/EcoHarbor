@@ -32,7 +32,7 @@ export default function Registration() {
 
   return (
     <form
-      className="make-offer-form"
+      className="make-offer-form flex flex-col gap-[10px] max-w-[350px] bg-white p-[20px] rounded-md relative mx-auto mt-20"
       onSubmit={handleSubmit(async () => {
         router.refresh();
         router.push('/account');
@@ -67,66 +67,85 @@ export default function Registration() {
         }
       })}
     >
-      <input
-        type="file"
-        {...register('businessImage')}
-        onChange={handleFileChange}
-      />
+      <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
+        Register
+      </p>
+      <p className=" text-black/54 opacity-30 font-light text-md">
+        Register and get full access to our App
+      </p>
+      <label className=" relative">
+        <input
+          type="file"
+          {...register('businessImage')}
+          onChange={handleFileChange}
+        />
+        <span>Business Image</span>
+      </label>
+      <label className=" relative">
+        <input
+        className=' w-max outline-none px-[10px] py-[20px] border '
+          {...register('businessName', {
+            required: {
+              value: true,
+              message: 'Please, insert your business name.',
+            },
+          })}
+          // placeholder="Business Name *"
+          onChange={handleChange}
+        />
+        <span>Business Name</span>
+        <p className="error-message">{errors.businessName?.message}</p>
+      </label>
+      <label className=" relative">
+        <input
+          {...register('businessEmail', {
+            required: 'Please, insert your email.',
+            pattern: {
+              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              message:
+                'Please, insert your real email, in the format xxx@xxx.xxx.',
+            },
+          })}
+          // placeholder="Business Email *"
+          onChange={handleChange}
+        />
+        <p>Business Email</p>
 
-      <input
-        {...register('businessName', {
-          required: {
-            value: true,
-            message: 'Please, insert your business name.',
-          },
-        })}
-        placeholder="Business Name *"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessName?.message}</p>
-
-      <input
-        {...register('businessEmail', {
-          required: 'Please, insert your email.',
-          pattern: {
-            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-            message:
-              'Please, insert your real email, in the format xxx@xxx.xxx.',
-          },
-        })}
-        placeholder="Business Email *"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessEmail?.message}</p>
-
-      <input
-        {...register('businessPhoneNr', {
-          pattern: {
-            value: /^\+[\d\s]+$/g,
-            message: 'The phone number must have the format +xx xxxxxx.',
-          },
-          minLength: {
-            value: 6,
-            message:
-              'Please, insert your real phone number (with at least 6 digits).',
-          },
-        })}
-        placeholder="Contact Number"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessPhoneNr?.message}</p>
-
-      <input
-        {...register('businessAdress', {
-          required: {
-            value: true,
-            message: 'Please, insert your business adress.',
-          },
-        })}
-        placeholder="Business Adress *"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessAdress?.message}</p>
+        <p className="error-message">{errors.businessEmail?.message}</p>
+      </label>
+      <label htmlFor="" className=" relative">
+        <input
+          {...register('businessPhoneNr', {
+            pattern: {
+              value: /^\+[\d\s]+$/g,
+              message: 'The phone number must have the format +xx xxxxxx.',
+            },
+            minLength: {
+              value: 6,
+              message:
+                'Please, insert your real phone number (with at least 6 digits).',
+            },
+          })}
+          // placeholder="Contact Number"
+          onChange={handleChange}
+        />
+        <span>Contact Number</span>
+        <p className="error-message">{errors.businessPhoneNr?.message}</p>
+      </label>
+      <label htmlFor="" className=" relative">
+        <input
+          {...register('businessAdress', {
+            required: {
+              value: true,
+              message: 'Please, insert your business adress.',
+            },
+          })}
+          // placeholder="Business Adress *"
+          onChange={handleChange}
+        />
+        <span>Business Adress</span>
+        <p className="error-message">{errors.businessAdress?.message}</p>
+      </label>
 
       <input type="submit" />
     </form>
