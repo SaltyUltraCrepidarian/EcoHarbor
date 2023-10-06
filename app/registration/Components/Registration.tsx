@@ -32,7 +32,7 @@ export default function Registration() {
 
   return (
     <form
-      className="make-offer-form flex flex-col gap-[10px] max-w-[350px] bg-white p-[20px] rounded-md relative mx-auto mt-20"
+      className=" form make-offer-form flex flex-col gap-[10px] max-w-[350px] bg-white p-[20px] rounded-md relative mx-auto mt-20"
       onSubmit={handleSubmit(async () => {
         router.refresh();
         router.push('/account');
@@ -73,17 +73,17 @@ export default function Registration() {
       <p className=" text-black/54 opacity-30 font-light text-md">
         Register and get full access to our App
       </p>
-      <label className=" relative">
+      <label>
         <input
           type="file"
           {...register('businessImage')}
           onChange={handleFileChange}
         />
-        <span>Business Image</span>
+
       </label>
       <label className=" relative">
         <input
-        className=' w-max outline-none px-[10px] py-[20px] border '
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessName', {
             required: {
               value: true,
@@ -93,11 +93,12 @@ export default function Registration() {
           // placeholder="Business Name *"
           onChange={handleChange}
         />
-        <span>Business Name</span>
+        <span className='form-span'>Business Name</span>
         <p className="error-message">{errors.businessName?.message}</p>
       </label>
       <label className=" relative">
         <input
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessEmail', {
             required: 'Please, insert your email.',
             pattern: {
@@ -109,12 +110,13 @@ export default function Registration() {
           // placeholder="Business Email *"
           onChange={handleChange}
         />
-        <p>Business Email</p>
+        <span className='form-span'>Business Email</span>
 
         <p className="error-message">{errors.businessEmail?.message}</p>
       </label>
       <label htmlFor="" className=" relative">
         <input
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessPhoneNr', {
             pattern: {
               value: /^\+[\d\s]+$/g,
@@ -129,11 +131,12 @@ export default function Registration() {
           // placeholder="Contact Number"
           onChange={handleChange}
         />
-        <span>Contact Number</span>
+        <span className='form-span'>Contact Number</span>
         <p className="error-message">{errors.businessPhoneNr?.message}</p>
       </label>
       <label htmlFor="" className=" relative">
         <input
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessAdress', {
             required: {
               value: true,
@@ -143,11 +146,11 @@ export default function Registration() {
           // placeholder="Business Adress *"
           onChange={handleChange}
         />
-        <span>Business Adress</span>
+        <span className='form-span'>Business Adress</span>
         <p className="error-message">{errors.businessAdress?.message}</p>
       </label>
 
-      <input type="submit" />
+      <input className=' bg-primary h-11 cursor-pointer text-fourth font-primary text-lg ' type="submit" />
     </form>
   );
 }
