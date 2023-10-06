@@ -93,6 +93,7 @@ export default function Registration() {
           })}
           placeholder="Business Name *"
           onChange={handleChange}
+          
         />
         <span className='form-span'>Business Name</span>
         <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessName?.message}</p>
@@ -111,12 +112,12 @@ export default function Registration() {
           })}
           placeholder="Business Email *"
           onChange={handleChange}
-          onFocus={(e) => e.target.nextElementSibling!.classList.add('focused')}
-          onBlur={(e) => {
-            if (!e.target.value) {
-              e.target.nextElementSibling!.classList.remove('focused');
-            }
-          }}
+          // onFocus={(e) => e.target.nextElementSibling!.classList.add('focused')}
+          // onBlur={(e) => {
+          //   if (!e.target.value) {
+          //     e.target.nextElementSibling!.classList.remove('focused');
+          //   }
+          // }}
         />
         <span className='form-span'>Business Email</span>
 
