@@ -83,7 +83,6 @@ export default function Registration() {
       </label>
       <label className=" relative">
         <input
-        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessName', {
             required: {
@@ -92,40 +91,39 @@ export default function Registration() {
             },
             
           })}
-          // placeholder="Business Name *"
+          placeholder="Business Name *"
           onChange={handleChange}
         />
         <span className='form-span'>Business Name</span>
-        <p className="error-message">{errors.businessName?.message}</p>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessName?.message}</p>
       </label>
       <label className=" relative">
         <input
-        placeholder=''
+     
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessEmail', {
             required: 'Please, insert your email.',
             pattern: {
-              value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+              value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
               message:
                 'Please, insert your real email, in the format xxx@xxx.xxx.',
             },
           })}
-          // placeholder="Business Email *"
+          placeholder="Business Email *"
           onChange={handleChange}
           onFocus={(e) => e.target.nextElementSibling!.classList.add('focused')}
-    onBlur={(e) => {
-      if (!e.target.value) {
-        e.target.nextElementSibling!.classList.remove('focused');
-      }
-    }}
+          onBlur={(e) => {
+            if (!e.target.value) {
+              e.target.nextElementSibling!.classList.remove('focused');
+            }
+          }}
         />
         <span className='form-span'>Business Email</span>
 
-        <p className="error-message">{errors.businessEmail?.message}</p>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessEmail?.message}</p>
       </label>
       <label htmlFor="" className=" relative">
         <input
-        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessPhoneNr', {
             pattern: {
@@ -138,15 +136,14 @@ export default function Registration() {
                 'Please, insert your real phone number (with at least 6 digits).',
             },
           })}
-          // placeholder="Contact Number"
+          placeholder="Contact Number"
           onChange={handleChange}
         />
         <span className='form-span'>Contact Number</span>
-        <p className="error-message">{errors.businessPhoneNr?.message}</p>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessPhoneNr?.message}</p>
       </label>
       <label htmlFor="" className=" relative">
         <input
-        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessAdress', {
             required: {
@@ -154,11 +151,11 @@ export default function Registration() {
               message: 'Please, insert your business adress.',
             },
           })}
-          // placeholder="Business Adress *"
+          placeholder="Business Adress *"
           onChange={handleChange}
         />
         <span className='form-span'>Business Adress</span>
-        <p className="error-message">{errors.businessAdress?.message}</p>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessAdress?.message}</p>
       </label>
 
       <input className=' bg-primary h-11 cursor-pointer text-fourth font-primary text-lg ' type="submit" />
