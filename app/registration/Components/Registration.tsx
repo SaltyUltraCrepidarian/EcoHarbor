@@ -83,12 +83,14 @@ export default function Registration() {
       </label>
       <label className=" relative">
         <input
+        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessName', {
             required: {
               value: true,
               message: 'Please, insert your business name.',
             },
+            
           })}
           // placeholder="Business Name *"
           onChange={handleChange}
@@ -98,6 +100,7 @@ export default function Registration() {
       </label>
       <label className=" relative">
         <input
+        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessEmail', {
             required: 'Please, insert your email.',
@@ -109,6 +112,12 @@ export default function Registration() {
           })}
           // placeholder="Business Email *"
           onChange={handleChange}
+          onFocus={(e) => e.target.nextElementSibling!.classList.add('focused')}
+    onBlur={(e) => {
+      if (!e.target.value) {
+        e.target.nextElementSibling!.classList.remove('focused');
+      }
+    }}
         />
         <span className='form-span'>Business Email</span>
 
@@ -116,6 +125,7 @@ export default function Registration() {
       </label>
       <label htmlFor="" className=" relative">
         <input
+        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessPhoneNr', {
             pattern: {
@@ -136,6 +146,7 @@ export default function Registration() {
       </label>
       <label htmlFor="" className=" relative">
         <input
+        placeholder=''
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
           {...register('businessAdress', {
             required: {

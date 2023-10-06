@@ -13,7 +13,7 @@ head {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-color: #F7F7F7ff;
+  background-color: #f7f7f7ff;
 }
 
 .button {
@@ -36,9 +36,10 @@ head {
   align-items: center;
   padding-left: 30px;
 } */
-.title::before, .title::after{
+.title::before,
+.title::after {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   border-radius: 50%;
@@ -64,7 +65,17 @@ head {
   flex: 1;
   align-items: center;
 }
-.form-span {
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+opacity: 1;
+  transition: 0.5s ease;
+}
+/* .form-span {
   position: absolute;
   left: 10px;
   top: 15px;
@@ -72,7 +83,21 @@ head {
   font-size: 0.9em;
   cursor: text;
   transition: 0.3s ease;
+} */
+.form label .input:placeholder-shown + span {
+  top: 10px;
+  font-size: 1rem;
 }
+.form label .input:focus + span,
+.form label .input.focused + span {
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+  opacity: 0;
+}
+
+
+
 
 .error-message {
   color: red;
@@ -97,10 +122,9 @@ head {
 }
 layer base {
   body {
-    @apply font-primary text-lg leading-8 ;
+    @apply font-primary text-lg leading-8;
   }
   .btn-xs {
     @apply h-[30px] px-4 text-xs overflow-hidden;
   }
-
 }
