@@ -26,16 +26,7 @@ head {
   flex: 1;
   align-items: center;
 }
-/* .title {
-  font-size: 28px;
-  color: #80b918;
-  font-weight: 600;
-  letter-spacing: -1px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding-left: 30px;
-} */
+
 .title::before,
 .title::after {
   position: absolute;
@@ -75,15 +66,7 @@ head {
   transition: 0.3s ease;
   opacity: 0;
 }
-/* .form-span {
-  position: absolute;
-  left: 10px;
-  top: 15px;
-  color: grey;
-  font-size: 0.9em;
-  cursor: text;
-  transition: 0.3s ease;
-} */
+
 .form label .input:placeholder-shown + span {
   top: 10px;
   font-size: 1rem;
@@ -98,14 +81,6 @@ head {
 
 
 
-
-
-/* .business-image {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  margin: 0;
-} */
 
 @keyframes pulse {
   from {
