@@ -47,67 +47,77 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
   };
   return (
     <>
-      <section className="offer-card-section">
-        <form onSubmit={handleSubmit}>
+     
+        <form
+          onSubmit={handleSubmit}
+          className=" form make-offer-form flex flex-col gap-[10px] max-w-[450px] bg-white p-[20px] rounded-md relative mx-auto mt-12"
+        >
           <Button
+            className=" mx-auto flex   justify-center rounded-md   font-light text-md  hover:bg-accent items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  "
             action={() => handleEdit()}
-            className="account-button"
             text="Cancel"
           />
-          <button className="account-button">Submit</button>
+          <button className=" mx-auto flex   justify-center rounded-md  hover:bg-accent  font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
+            Submit
+          </button>
 
-          <div className="label-input-wrap">
-            <label>Description:</label>
+          <label className="relative">
             <input
+              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
               type="text"
               name="description"
               onChange={handleOnChange}
               value={offerValues.description}
               required
             />
-          </div>
+            <span className="form-span">Description</span>
+          </label>
 
-          <div className="label-input-wrap">
-            <label>Available:</label>
+          <label className="relative">
             <input
+              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
               type="text"
               name="available"
               onChange={handleOnChange}
               value={offerValues.available}
               required
             />
-          </div>
+            <span className="form-span">Available</span>
+          </label>
 
-          <div className="label-input-wrap">
-            <label>Location:</label>
+          <label className="relative">
             <input
+              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
               type="text"
               name="location"
               onChange={handleOnChange}
               value={offerValues.location}
               required
             />
-          </div>
+            <span className="form-span">Location</span>
+          </label>
 
-          <div className="label-input-wrap">
-            <label>About:</label>
+          <label className="relative">
             <input
+              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
               type="text"
               name="about"
               onChange={handleOnChange}
               value={offerValues.about}
               required
             />
-          </div>
+            <span className="form-span">Location</span>
+          </label>
 
-          <p>Created at: {String(donationOffer.createdAt)}</p>
+        
           <Button
             action={() => handleDelete()}
-            className="account-button"
+            className=" bg-primary hover:bg-third h-11 cursor-pointer text-fourth font-primary text-lg "
+
             text="Delete"
           />
         </form>
-      </section>
+
     </>
   );
 }
