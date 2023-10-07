@@ -50,8 +50,9 @@ export default function EditProfile({ handleEdit, userData }: Props) {
   // };
 
   return (
-    <section className="profile-wrapper">
+    <>
       <form
+        className=" form font-primary  make-offer-form flex flex-col gap-[10px] max-w-[450px] lg:max-w-[600px] bg-white p-[20px] rounded-md relative mx-auto mt-20"
         onSubmit={handleSubmit(async () => {
           const res = await fetch('/api/edit-profile', {
             method: 'PATCH',
@@ -68,33 +69,35 @@ export default function EditProfile({ handleEdit, userData }: Props) {
           return res.text;
         })}
       >
-        <img src={userData.personalImage} alt="profile-image" />
-        <h3>Welcome, {userData.personalName.split(' ')[0]}!</h3>
-        <p>PERSONAL INFO: </p>
-        <div className="label-input-wrap">
-          <label>Personal Name:</label>
+        <p className=" -ml-8 font-primary font-medium  mb-3 text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
+          Edit your profile
+        </p>
+        {/* <img src={userData.personalImage} alt="profile-image" className='w-[200px]' /> */}
+        {/* <h3>Welcome, {userData.personalName.split(' ')[0]}!</h3> */}
+        <p className="font-semibold font-secondary text-lg">PERSONAL INFO: </p>
+        <label className="relative">
           <input
+            className=" input w-full outline-none px-[10px] py-[16px]  border-b border-l opacity-40 rounded-md "
             type="text"
             name="personalName"
             onChange={handleOnChange}
             value={profileValues.personalName}
             required
           />
-        </div>
-        <div className="label-input-wrap">
-          <p>BUSINESS INFO (Shown):</p>
-          <label>Business Image:</label>
-          <img
-            className=" w-[250px] rounded-md"
-            src={userData.businessImage}
-            alt="business-image"
-          />
+          <span className="form-span">Personal Name</span>
+        </label>
+        <p className="font-semibold font-secondary text-lg">BUSINESS INFO:</p>
+        <label>Business Image:</label>
+        <img
+          className=" w-[250px] rounded-md"
+          src={userData.businessImage}
+          alt="business-image"
+        />
 
-          <ImageUpload />
-        </div>
-        <div className="label-input-wrap">
-          <label>Business Name:</label>
+        <ImageUpload />
+        <label className="relative">
           <input
+            className=" input w-full outline-none px-[10px] py-[16px]  border-b border-l opacity-40 rounded-md "
             {...register('businessName', {
               required: {
                 value: true,
@@ -105,12 +108,16 @@ export default function EditProfile({ handleEdit, userData }: Props) {
             onChange={handleOnChange}
             value={profileValues.businessName}
           />
-          <p className="error-message">{errors.businessName?.message}</p>
-        </div>
+          <span className="form-span">Business Name </span>
 
-        <div className="label-input-wrap">
-          <label>Business Email:</label>
+          <p className="error-message text-red-600 font-primary text-lg font-light">
+            {errors.businessName?.message}
+          </p>
+        </label>
+
+        <label className="relative">
           <input
+            className=" input w-full outline-none px-[10px] py-[16px]  border-b border-l opacity-40 rounded-md "
             {...register('businessEmail', {
               required: 'Please, insert your email.',
               pattern: {
@@ -123,12 +130,16 @@ export default function EditProfile({ handleEdit, userData }: Props) {
             onChange={handleOnChange}
             value={profileValues.businessEmail}
           />
-          <p className="error-message">{errors.businessEmail?.message}</p>
-        </div>
+          <span className="form-span">Business Email </span>
 
-        <div className="label-input-wrap">
-          <label>Phone Number:</label>
+          <p className="error-message text-red-600 font-primary text-lg font-light">
+            {errors.businessEmail?.message}
+          </p>
+        </label>
+
+        <label className="relative">
           <input
+            className=" input w-full outline-none px-[10px] py-[16px]  border-b border-l opacity-40 rounded-md "
             {...register('businessPhoneNr', {
               pattern: {
                 value: /^\+[\d\s]+$/g,
@@ -144,24 +155,28 @@ export default function EditProfile({ handleEdit, userData }: Props) {
             onChange={handleOnChange}
             value={profileValues.businessPhoneNr}
           />
-          <p className="error-message">{errors.businessPhoneNr?.message}</p>
-        </div>
+          <span className="form-span">Phone Number </span>
 
-        <div className="label-input-wrap">
-          <label>Business Adress:</label>
+          <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessPhoneNr?.message}</p>
+        </label>
+
+        <label className="relative">
           <input
+            className=" input w-full outline-none px-[10px] py-[16px]  border-b border-l opacity-40 rounded-md "
             {...register('businessAdress', {
               required: {
                 value: true,
                 message: 'Please, insert your business adress.',
               },
             })}
-            placeholder="Business Adress *"
+            placeholder="Business Address *"
             onChange={handleOnChange}
             value={profileValues.businessAdress}
           />
-          <p className="error-message">{errors.businessAdress?.message}</p>
-        </div>
+          <span className="form-span">Business Address </span>
+
+          <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessAdress?.message}</p>
+        </label>
 
         <button
           type="submit"
@@ -173,16 +188,16 @@ export default function EditProfile({ handleEdit, userData }: Props) {
       <section className="flex fex-row w-[150px]">
         <Button
           action={handleEdit}
-          className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0 mt-3 "
+          className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[100px] border-primary border text-primary text-md ml-0 mt-3 mr- "
           text="Cancel"
         />
 
         <Button
           action={() => alert('Delete Selected')}
-          className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0  mt-3 "
+          className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[100px] border-primary border text-primary text-md ml-0  mt-3 "
           text="Delete"
         />
       </section>
-    </section>
+    </>
   );
 }
