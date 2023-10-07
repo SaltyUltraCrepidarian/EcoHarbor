@@ -25,7 +25,7 @@ export default function Registration() {
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile) {
-      await setFile(selectedFile);
+       setFile(selectedFile);
     }
     console.log('this is file: ', file);
   };
