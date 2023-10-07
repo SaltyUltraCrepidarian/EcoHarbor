@@ -30,9 +30,14 @@ const ImageUpload = () => {
 
   return (
     <div>
-      <input type="file" accept="image/*" onChange={handleFileChange} />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        className=" input w-full outline-none px-[10px] py-[16px] opacity-40 "
+      />
       <button
-        className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] border-primary border text-primary text-md ml-0  mt-3 "
+        className=" mx-auto ml-2 flex hover:bg-secondary/75  justify-center rounded-md   font-light text-md items-center h-[35px] w-[100px] border-primary border text-primary text-md   mt-3 "
         onClick={handleSubmit}
       >
         Upload

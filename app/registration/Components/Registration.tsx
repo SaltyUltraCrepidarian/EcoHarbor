@@ -159,7 +159,7 @@ export default function Registration() {
         <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessAdress?.message}</p>
       </label>
 
-      <input className=' bg-primary h-11 cursor-pointer text-fourth font-primary text-lg ' type="submit" />
+      <input className=' bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg ' type="submit" />
     </form>
   );
 }
