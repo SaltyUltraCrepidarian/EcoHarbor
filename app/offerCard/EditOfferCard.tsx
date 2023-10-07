@@ -112,7 +112,7 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
         
           <Button
             action={() => handleDelete()}
-            className=" bg-primary hover:bg-third h-11 cursor-pointer text-fourth font-primary text-lg "
+            className=" bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg "
 
             text="Delete"
           />
