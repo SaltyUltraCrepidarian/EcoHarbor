@@ -33,8 +33,8 @@ export default function Profile({ userData }: Props) {
 
   if (!editMode)
     return (
-      <section className="p-[24px] font-primary leading-7 tracking-wider">
-        <h4 className=" font-semibold text-4xl">
+      <section className="p-[24px] max-w-[400px] gap-[10px] font-primary leading-7 ">
+        <h4 className=" font-medium text-4xl tracking-tighter">
           Welcome, {userData.personalName.split(' ')[0]}!{' '}
           <img
             src={userData.personalImage}
@@ -42,30 +42,35 @@ export default function Profile({ userData }: Props) {
             className=" w-16 h-16 rounded-md mb-4 inline"
           />
         </h4>
-
-        <p className=" text-xl font-semibold">PERSONAL INFO: </p>
-        <p className="">Personal name: {userData.personalName}</p>
-        <p>Personal email: {userData.personalEmail}</p>
-        <p className="text-xl font-semibold mt-8 mb-8">BUSINESS INFO :</p>
+        <div className='flex mx-auto flex-col pb-2 border-b  border-primary'>
+        <p className=" text-lg font-semibold font-secondary text-primary">PERSONAL INFO: </p>
+        <p>Personal name: {userData.personalName}</p>
+        <p >Personal email: {userData.personalEmail}</p>
+        </div>
+        <div className='flex mx-auto flex-col pb-2 border-b border-primary '>
+        <p className="text-lg font-semibold mt-8 mb-8 font-secondary text-primary">BUSINESS INFO :</p>
+      
         <img
           src={userData.businessImage}
           alt="business-image"
           className=" max-w-[250px] rounded-md mb-8"
         />
+       
         <p>Business Name: {userData.businessName}</p>
         <p>Contact Email: {userData.businessEmail}</p>
         <p>Phone number: {userData.businessPhoneNr}</p>
         <p>Adress: {userData.businessAdress}</p>
         <p>Your Rating: {userData.rating}</p>
+        </div>
         <section className="flex flex-row w-[300px] mt-4">
           <Button
             action={() => signOut({ callbackUrl: '/' })}
-            className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0  "
+            className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-accent  w-[80px] bg-primary border text-fourth text-md ml-0  "
             text="Sign Out"
           />
           <Button
             action={handleEdit}
-            className=" mx-auto flex justify-center rounded-md   font-light text-md items-center h-[35px] w-[80px] hover:bg-opacity-90 bg-primary border text-fourth -ml-11 "
+            className=" mx-auto flex justify-center rounded-md  font-light text-md items-center h-[35px] w-[80px] hover:bg-accent bg-primary border text-fourth -ml-11 "
             text="Edit"
           />
         </section>
