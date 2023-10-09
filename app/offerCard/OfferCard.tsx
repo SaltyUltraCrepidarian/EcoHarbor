@@ -26,24 +26,37 @@ export default function OfferCard({ donationOffer, isAdmin }: Props) {
   if (!editMode)
     return (
       <section className="flex rounded-md items-center mx-auto overflow-hidden">
-        <img
-          className="business-image border-r h-[250px] max-w-[200px] object-cover  p-0      "
-          src={donationOffer.cardBusinessImage}
-          alt="do-better-next-time"
-        />
-        <div className="offer-card-info font-primary font-light max-w-[200px] tracking-wide ">
-          {isAdmin && (
+        <div className='relative'>
+            {isAdmin && (
             <button
-            className="  flex justify-center rounded-md  font-light text-md items-center h-[35px] w-[80px] hover:bg-accent bg-primary border text-fourth "
-            onClick={handleEdit}
+            className=' absolute rounded-md  font-light text-md items-center h-[35px] w-[80px] hover:bg-opacity-95 bg-primary bg-opacity-75 mt-1 ml-2 text-fourth'
+              onClick={handleEdit}
             >
               Edit
             </button>
           )}
-          <p>Description: {donationOffer.description}</p>
-          <p>Available: {donationOffer.available}</p>
-          <p>Location: {donationOffer.location}</p>
-          <p>About: {donationOffer.about}</p>
+        <img
+        
+          className="business-image border-r h-[250px] max-w-[200px] object-cover  p-0      "
+          src={donationOffer.cardBusinessImage}
+          alt="business image"
+        />
+        </div>
+        
+        <div className="offer-card-info font-primary font-light max-w-[200px] tracking-wide ">
+      
+
+          <div className=" tracking-wider ">
+            <p className=" h-[150px] uppercase font-primary font-semibold leading-1 mt-0 ">
+              {' '}
+              {donationOffer.description}
+            </p>
+            <p className=" border-b border-r rounded-md ">
+              {donationOffer.about}
+            </p>
+            <p className=" text-black/30 mt-4"> {donationOffer.available}</p>
+            <p>{donationOffer.location}</p>
+          </div>
         </div>
       </section>
     );
