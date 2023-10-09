@@ -29,10 +29,10 @@ export default async function Home() {
       <Footer />
       <main className="offer-cards-main main  ">
         <div className=" overflow-x-auto">
-          <div className="flex gap-x-0.5">
+          <div className="flex gap-x-4 mb-11  mt-20 ">
             {donationInfo.map((donationOffer, index) => (
               <section
-                className="offer-card-section flex-shrink-0  "
+                className="offer-card-section flex-shrink-0 max-h-[300px]  "
                 key={index}
               >
                 <OfferCard donationOffer={donationOffer} isAdmin={false} />
