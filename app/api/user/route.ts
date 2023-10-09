@@ -32,8 +32,7 @@ export async function GET(req: NextRequest, res: NextResponse) {
         personalEmail: session?.user?.email,
       },
     });
-    if(databaseUser){
-      console.log(databaseUser)
+    if (databaseUser) {
       return new Response(JSON.stringify(databaseUser));
     }
 

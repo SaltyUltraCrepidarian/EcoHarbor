@@ -5,6 +5,7 @@ import './Profile.css';
 import { User } from '@/app/types';
 import EditProfile from './EditProfile';
 import Registration from '@/app/registration/Components/Registration';
+import ImageUpload from './ImageUpload';
 
 type Props = {
   userData: User;
@@ -12,17 +13,15 @@ type Props = {
 
 export default function Profile({ userData }: Props) {
   const [editMode, setEditMode] = useState(false);
+  const [imageUploadMode, setImageUploadMode] = useState(false);
 
   const handleEdit = () => {
     setEditMode(!editMode);
   };
 
-  if (!userData)
-    return (
-      <>
-        <Registration />
-      </>
-    );
+  const handleImageUpload = () => {
+    setImageUploadMode(!imageUploadMode);
+  };
 
   if (editMode)
     return (
@@ -42,6 +41,31 @@ export default function Profile({ userData }: Props) {
             className=" w-16 h-16 rounded-md mb-4 inline"
           />
         </h4>
+
+        {imageUploadMode ? (
+          <>
+            <img
+              src={userData.businessImage}
+              alt="business-image"
+              className=" max-w-[250px] rounded-md mb-8"
+            />
+            <ImageUpload />
+          </>
+        ) : (
+          <>
+            <img
+              src={userData.businessImage}
+              alt="business-image"
+              className=" max-w-[250px] rounded-md mb-8"
+            />
+            <Button
+              action={handleImageUpload}
+              className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0  "
+              text="Upload New Image"
+            />
+          </>
+        )}
+
         <div className='flex mx-auto flex-col pb-2 border-b  border-primary'>
         <p className=" text-lg font-semibold font-secondary text-primary">PERSONAL INFO: </p>
         <p>Personal name: {userData.personalName}</p>
@@ -50,12 +74,31 @@ export default function Profile({ userData }: Props) {
         <div className='flex mx-auto flex-col pb-2 border-b border-primary '>
         <p className="text-lg font-semibold mt-8 mb-8 font-secondary text-primary">BUSINESS INFO :</p>
       
-        <img
-          src={userData.businessImage}
-          alt="business-image"
-          className=" max-w-[250px] rounded-md mb-8"
-        />
+      {imageUploadMode ? (
+          <>
+            <img
+              src={userData.businessImage}
+              alt="business-image"
+              className=" max-w-[250px] rounded-md mb-8"
+            />
+            <ImageUpload />
+          </>
+        ) : (
+          <>
+            <img
+              src={userData.businessImage}
+              alt="business-image"
+              className=" max-w-[250px] rounded-md mb-8"
+            />
+            <Button
+              action={handleImageUpload}
+              className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0  "
+              text="Upload New Image"
+            />
+          </>
+        )}
        
+
         <p>Business Name: {userData.businessName}</p>
         <p>Contact Email: {userData.businessEmail}</p>
         <p>Phone number: {userData.businessPhoneNr}</p>

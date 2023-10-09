@@ -3,7 +3,6 @@ import { RegistrationFormValues, User } from '@/app/types';
 import React, { useState } from 'react';
 import ImageUpload from './ImageUpload';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 
 type Props = {
   handleEdit: Function;
@@ -11,8 +10,6 @@ type Props = {
 };
 
 export default function EditProfile({ handleEdit, userData }: Props) {
-  const router = useRouter();
-
   const form = useForm<RegistrationFormValues>();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
@@ -35,20 +32,6 @@ export default function EditProfile({ handleEdit, userData }: Props) {
     }));
   };
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   // e.preventDefault();
-  //   const res = await fetch('/api/edit-profile', {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(profileValues),
-  //   });
-  //   setProfileValues(profileValues)
-  //   console.log(res);
-  //   return res.text;
-  // };
-
   return (
     <>
       <form
@@ -62,7 +45,6 @@ export default function EditProfile({ handleEdit, userData }: Props) {
             body: JSON.stringify(profileValues),
           });
           setProfileValues(profileValues);
-          console.log(res);
           if (res.status === 200) {
             window.location.reload();
           }

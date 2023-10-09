@@ -10,9 +10,12 @@ export default function Registration() {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const [file, setFile] = useState<File | null>(null);
-  const [registrationInfo, setRegistrationInfo] = useState(
-    defaultRegistrationValues
-  );
+  const [registrationInfo, setRegistrationInfo] = useState({
+    ...defaultRegistrationValues,
+    businessImage:
+      'https://fastly.picsum.photos/id/429/4128/2322.jpg?hmac=_mAS4ToWrJBx29qI2YNbOQ9IyOevQr01DEuCbArqthc',
+  });
+
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,13 +25,15 @@ export default function Registration() {
     }));
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = e.target.files?.[0];
-    if (selectedFile) {
-       setFile(selectedFile);
-    }
-    console.log('this is file: ', file);
-  };
+
+ // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+ //   const selectedFile = e.target.files?.[0];
+ //   if (selectedFile) {
+ //      setFile(selectedFile);
+  //  }
+  //  console.log('this is file: ', file);
+ // };
+
 
   return (
     <form
@@ -36,20 +41,6 @@ export default function Registration() {
       onSubmit={handleSubmit(async () => {
         router.refresh();
         router.push('/account');
-
-        if (file) {
-          try {
-            const response = await fetch('/api/upload', {
-              method: 'POST',
-              body: file,
-              headers: {
-                'Content-Type': 'image/jpeg',
-              },
-            });
-          } catch (error) {
-            console.error('Error:', error);
-          }
-        }
 
         try {
           const res = await fetch('/api/registration', {
@@ -60,27 +51,21 @@ export default function Registration() {
             body: JSON.stringify(registrationInfo),
           });
           setRegistrationInfo(registrationInfo);
-          setRegistrationInfo(defaultRegistrationValues);
           return res.text;
         } catch (err) {
           console.error('Failed to fetch data', err);
         }
       })}
     >
+
+
       <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
         Register
       </p>
       <p className=" text-black/54 opacity-30 font-light text-md">
         Register and get full access to our App
       </p>
-      <label>
-        <input
-          type="file"
-          {...register('businessImage')}
-          onChange={handleFileChange}
-        />
-
-      </label>
+    
       <label className=" relative">
         <input
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "

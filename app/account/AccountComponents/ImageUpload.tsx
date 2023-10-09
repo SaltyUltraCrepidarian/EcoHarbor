@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ImageUpload = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -22,6 +22,10 @@ const ImageUpload = () => {
             'Content-Type': 'image/jpeg',
           },
         });
+        if (response.status === 200) {
+          window.location.reload();
+        }
+        return response;
       } catch (error) {
         console.error('Error:', error);
       }
