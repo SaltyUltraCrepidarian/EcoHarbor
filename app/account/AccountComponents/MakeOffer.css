@@ -1,14 +1,31 @@
-.make-offer-form {
-  max-width: 412px; /* Set the maximum width */
-  width: 100%; /* Make the element take up the full width of its parent */
-  /* margin: 24px;  */
+.title {
+  font-size: 28px;
+  color: #80b918;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
   display: flex;
-  flex-direction: column;
-  /* gap: 10px; */
-  align-self: center;
-  border: 1px solid black;
-  border-radius: 6px;
-  padding: 8px;
+  align-items: center;
+  padding-left: 30px;
+}
+.title::before, .title::after{
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #80b918;
+}
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #80b918;
+}
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
 }
 
 .make-offer-wrapper {

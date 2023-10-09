@@ -13,7 +13,7 @@ head {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background-color: #F7F7F7ff;
+  background-color: #f7f7f7ff;
 }
 
 .button {
@@ -27,6 +27,27 @@ head {
   align-items: center;
 }
 
+.title::before,
+.title::after {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: #80b918;
+}
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: #80b918;
+}
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
 .offer-cards-main {
   margin-top: 100px;
   padding: 0 16px 80px;
@@ -35,24 +56,51 @@ head {
   flex: 1;
   align-items: center;
 }
-
-.error-message {
-  color: red;
+.form label .input + span {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+  opacity: 0;
 }
-/* .business-image {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  margin: 0;
-} */
+
+.form label .input:placeholder-shown + span {
+  top: 10px;
+  font-size: 1rem;
+}
+.form label .input:focus + span {
+  top: 0px;
+  font-size: 0.7em;
+  font-weight: 600;
+  opacity: 1;
+}
+.font{
+  
+}
 
 
+
+
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
 layer base {
   body {
-    @apply font-primary text-lg leading-8 ;
+    @apply font-primary text-lg leading-8;
   }
   .btn-xs {
     @apply h-[30px] px-4 text-xs overflow-hidden;
   }
-
 }

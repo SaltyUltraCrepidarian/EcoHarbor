@@ -14,7 +14,7 @@ export default function Footer() {
 
   if (status === 'authenticated') {
     return (
-      <footer className="footer   flex  justify-around  text-secondary font-primary font-light text-xl leading-[0.8] mx-auto">
+      <footer className="footer  flex  justify-around  text-secondary font-primary font-light text-xl leading-[0.8] mx-auto">
         <Link href={'/'} className="">
           What&apos;s Available
         </Link>

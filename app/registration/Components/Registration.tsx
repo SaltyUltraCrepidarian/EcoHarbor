@@ -25,9 +25,19 @@ export default function Registration() {
     }));
   };
 
+
+ // const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+ //   const selectedFile = e.target.files?.[0];
+ //   if (selectedFile) {
+ //      setFile(selectedFile);
+  //  }
+  //  console.log('this is file: ', file);
+ // };
+
+
   return (
     <form
-      className="make-offer-form"
+      className=" form make-offer-form flex flex-col gap-[10px] max-w-[350px] bg-white p-[20px] rounded-md relative mx-auto mt-20"
       onSubmit={handleSubmit(async () => {
         router.refresh();
         router.push('/account');
@@ -47,62 +57,101 @@ export default function Registration() {
         }
       })}
     >
-      <input
-        {...register('businessName', {
-          required: {
-            value: true,
-            message: 'Please, insert your business name.',
-          },
-        })}
-        placeholder="Business Name *"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessName?.message}</p>
 
-      <input
-        {...register('businessEmail', {
-          required: 'Please, insert your email.',
-          pattern: {
-            value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-            message:
-              'Please, insert your real email, in the format xxx@xxx.xxx.',
-          },
-        })}
-        placeholder="Business Email *"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessEmail?.message}</p>
 
-      <input
-        {...register('businessPhoneNr', {
-          pattern: {
-            value: /^\+[\d\s]+$/g,
-            message: 'The phone number must have the format +xx xxxxxx.',
-          },
-          minLength: {
-            value: 6,
-            message:
-              'Please, insert your real phone number (with at least 6 digits).',
-          },
-        })}
-        placeholder="Contact Number"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessPhoneNr?.message}</p>
+      <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
+        Register
+      </p>
+      <p className=" text-black/54 opacity-30 font-light text-md">
+        Register and get full access to our App
+      </p>
+      <label>
+        <input
+          type="file"
+          {...register('businessImage')}
+          onChange={handleFileChange}
+        />
 
-      <input
-        {...register('businessAdress', {
-          required: {
-            value: true,
-            message: 'Please, insert your business adress.',
-          },
-        })}
-        placeholder="Business Adress *"
-        onChange={handleChange}
-      />
-      <p className="error-message">{errors.businessAdress?.message}</p>
+      </label>
+      <label className=" relative">
+        <input
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
+          {...register('businessName', {
+            required: {
+              value: true,
+              message: 'Please, insert your business name.',
+            },
+            
+          })}
+          placeholder="Business Name *"
+          onChange={handleChange}
+          
+        />
+        <span className='form-span'>Business Name</span>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessName?.message}</p>
+      </label>
+      <label className=" relative">
+        <input
+     
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
+          {...register('businessEmail', {
+            required: 'Please, insert your email.',
+            pattern: {
+              value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+              message:
+                'Please, insert your real email, in the format xxx@xxx.xxx.',
+            },
+          })}
+          placeholder="Business Email *"
+          onChange={handleChange}
+          // onFocus={(e) => e.target.nextElementSibling!.classList.add('focused')}
+          // onBlur={(e) => {
+          //   if (!e.target.value) {
+          //     e.target.nextElementSibling!.classList.remove('focused');
+          //   }
+          // }}
+        />
+        <span className='form-span'>Business Email</span>
 
-      <input type="submit" />
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessEmail?.message}</p>
+      </label>
+      <label htmlFor="" className=" relative">
+        <input
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
+          {...register('businessPhoneNr', {
+            pattern: {
+              value: /^\+[\d\s]+$/g,
+              message: 'The phone number must have the format +xx xxxxxx.',
+            },
+            minLength: {
+              value: 6,
+              message:
+                'Please, insert your real phone number (with at least 6 digits).',
+            },
+          })}
+          placeholder="Contact Number"
+          onChange={handleChange}
+        />
+        <span className='form-span'>Contact Number</span>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessPhoneNr?.message}</p>
+      </label>
+      <label htmlFor="" className=" relative">
+        <input
+          className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
+          {...register('businessAdress', {
+            required: {
+              value: true,
+              message: 'Please, insert your business adress.',
+            },
+          })}
+          placeholder="Business Adress *"
+          onChange={handleChange}
+        />
+        <span className='form-span'>Business Adress</span>
+        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessAdress?.message}</p>
+      </label>
+
+      <input className=' bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg ' type="submit" />
     </form>
   );
 }
