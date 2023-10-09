@@ -26,20 +26,20 @@ export default async function Home() {
 
   return (
     <>
-     
-    
-      <Footer/>
+      <Footer />
       <main className="offer-cards-main main  ">
-        <div className=' overflow-x-auto'>
-          <div className='flex space-x-4 p-4'>
-        {donationInfo.map((donationOffer, index) => (
-          <section className="offer-card-section flex-shrink-0  " key={index}>
-            <OfferCard donationOffer={donationOffer} isAdmin={false} />
-          </section>
-      
-        ))}
+        <div className=" overflow-x-auto">
+          <div className="flex gap-x-0.5">
+            {donationInfo.map((donationOffer, index) => (
+              <section
+                className="offer-card-section flex-shrink-0  "
+                key={index}
+              >
+                <OfferCard donationOffer={donationOffer} isAdmin={false} />
+              </section>
+            ))}
+          </div>
         </div>
-         </div>
       </main>
     </>
   );
