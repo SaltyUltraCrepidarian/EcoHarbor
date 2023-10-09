@@ -65,14 +65,7 @@ export default function Registration() {
       <p className=" text-black/54 opacity-30 font-light text-md">
         Register and get full access to our App
       </p>
-      <label>
-        <input
-          type="file"
-          {...register('businessImage')}
-          onChange={handleFileChange}
-        />
-
-      </label>
+    
       <label className=" relative">
         <input
           className=" input w-full outline-none px-[10px] py-[16px] border border-black/25 opacity-40 rounded-md "
