@@ -8,7 +8,7 @@ type Props = {
 
 export default function Giveaways({ donationData }: Props) {
   return (
-    <main className='giveaway-main'>
+    <main className='giveaway-main mt-16'>
       {donationData.map((donation, index) => {
         return (
           <section className="offer-card-section" key={index}>
