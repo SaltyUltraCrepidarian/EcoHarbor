@@ -29,12 +29,17 @@ export default async function Home() {
      
     
       <Footer/>
-      <main className="offer-cards-main main">
+      <main className="offer-cards-main main  ">
+        <div className=' overflow-x-auto'>
+          <div className='flex space-x-4 p-4'>
         {donationInfo.map((donationOffer, index) => (
-          <section className="offer-card-section" key={index}>
+          <section className="offer-card-section flex-shrink-0  " key={index}>
             <OfferCard donationOffer={donationOffer} isAdmin={false} />
           </section>
+      
         ))}
+        </div>
+         </div>
       </main>
     </>
   );
