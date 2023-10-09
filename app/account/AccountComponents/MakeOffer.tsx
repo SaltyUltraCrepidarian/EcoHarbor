@@ -60,6 +60,8 @@ const MakeOffer = () => {
             setOfferInfo(offerInfo);
             if (!res.ok) {
               throw new Error('Failed to fetch data');
+            } else {
+              window.location.reload();
             }
 
             return res.text;
