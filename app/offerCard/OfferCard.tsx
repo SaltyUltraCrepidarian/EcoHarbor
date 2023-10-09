@@ -49,7 +49,7 @@ export default function OfferCard({ donationOffer, isAdmin }: Props) {
           </p>
           <p className=" h-[150px] mb-60">{donationOffer.about}</p>
           <p className=" text-primary ">{donationOffer.location}</p>
-          <p className=" text-black/30 mt-4 h-0">{donationOffer.available}</p>
+          <p className=" text-black/30 mt-4 ">{donationOffer.available}</p>
           {/* </div> */}
         </div>
       </section>
