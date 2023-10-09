@@ -42,68 +42,47 @@ export default function Profile({ userData }: Props) {
           />
         </h4>
 
-        {imageUploadMode ? (
-          <>
-            <img
-              src={userData.businessImage}
-              alt="business-image"
-              className=" max-w-[250px] rounded-md mb-8"
-            />
-            <ImageUpload />
-          </>
-        ) : (
-          <>
-            <img
-              src={userData.businessImage}
-              alt="business-image"
-              className=" max-w-[250px] rounded-md mb-8"
-            />
-            <Button
-              action={handleImageUpload}
-              className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0  "
-              text="Upload New Image"
-            />
-          </>
-        )}
-
-        <div className='flex mx-auto flex-col pb-2 border-b  border-primary'>
-        <p className=" text-lg font-semibold font-secondary text-primary">PERSONAL INFO: </p>
-        <p>Personal name: {userData.personalName}</p>
-        <p >Personal email: {userData.personalEmail}</p>
+        <div className="flex mx-auto flex-col pb-2 border-b  border-primary">
+          <p className=" text-lg font-semibold font-secondary text-primary">
+            PERSONAL INFO:{' '}
+          </p>
+          <p>Personal name: {userData.personalName}</p>
+          <p>Personal email: {userData.personalEmail}</p>
         </div>
-        <div className='flex mx-auto flex-col pb-2 border-b border-primary '>
-        <p className="text-lg font-semibold mt-8 mb-8 font-secondary text-primary">BUSINESS INFO :</p>
-      
-      {imageUploadMode ? (
-          <>
-            <img
-              src={userData.businessImage}
-              alt="business-image"
-              className=" max-w-[250px] rounded-md mb-8"
-            />
-            <ImageUpload />
-          </>
-        ) : (
-          <>
-            <img
-              src={userData.businessImage}
-              alt="business-image"
-              className=" max-w-[250px] rounded-md mb-8"
-            />
-            <Button
-              action={handleImageUpload}
-              className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0  "
-              text="Upload New Image"
-            />
-          </>
-        )}
-       
+        <div className="flex mx-auto flex-col pb-2 border-b border-primary ">
+          <p className="text-lg font-semibold mt-8 mb-8 font-secondary text-primary">
+            BUSINESS INFO :
+          </p>
 
-        <p>Business Name: {userData.businessName}</p>
-        <p>Contact Email: {userData.businessEmail}</p>
-        <p>Phone number: {userData.businessPhoneNr}</p>
-        <p>Adress: {userData.businessAdress}</p>
-        <p>Your Rating: {userData.rating}</p>
+          {imageUploadMode ? (
+            <>
+              <img
+                src={userData.businessImage}
+                alt="business-image"
+                className=" max-w-[250px] rounded-md mb-8"
+              />
+              <ImageUpload />
+            </>
+          ) : (
+            <>
+              <img
+                src={userData.businessImage}
+                alt="business-image"
+                className=" max-w-[250px] rounded-md mb-8"
+              />
+              <Button
+                action={handleImageUpload}
+                className=" mx-auto flex  justify-center rounded-md   font-light text-md items-center h-[35px]  hover:bg-opacity-90  w-[80px] bg-primary border text-fourth text-md ml-0 -mt-7 mb-3 "
+                text="Upload"
+              />
+            </>
+          )}
+
+          <p>Business Name: {userData.businessName}</p>
+          <p>Contact Email: {userData.businessEmail}</p>
+          <p>Phone number: {userData.businessPhoneNr}</p>
+          <p>Adress: {userData.businessAdress}</p>
+          <p>Your Rating: {userData.rating}</p>
         </div>
         <section className="flex flex-row w-[300px] mt-4">
           <Button
