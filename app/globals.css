@@ -79,9 +79,11 @@ head {
 }
 
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 20px;
 }
+
+*/
 
 /* Track */
 /* ::-webkit-scrollbar-track {
@@ -90,15 +92,19 @@ head {
 } */
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/* ::-webkit-scrollbar-thumb {
   background: #80B918;
   border-radius: 10px;
 }
 
+*/
+
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+/* ::-webkit-scrollbar-thumb:hover {
   background: #55A630;
 }
+
+*/
 
 
 @keyframes pulse {
