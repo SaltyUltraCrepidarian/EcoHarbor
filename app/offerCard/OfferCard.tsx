@@ -42,7 +42,7 @@ export default function OfferCard({ donationOffer, isAdmin }: Props) {
           />
         </div>
 
-        <div className="offer-card-info font-primary font-light max-w-[200px] tracking-wide ">
+        <div className="offer-card-info font-primary font-light max-w-[200px] tracking-wide  ">
           {/* <div className=" tracking-wider "> */}
           <p className="  uppercase font-primary font-semibold leading-1 ">
             {donationOffer.description}
