@@ -37,20 +37,20 @@ export default function OfferCard({ donationOffer, isAdmin }: Props) {
               </button>
             )}
             <img
-              className=" border-r h-[180px] w-full object-cover  p-0 "
+              className=" border-r h-[180px] w-[300px] object-cover  p-0 "
               src={donationOffer.cardBusinessImage}
               alt="business image"
             />
           </div>
         </section>
-        <div className=" p-0 offer-card-info font-primary font-light max-w-[200px] tracking-wide  ">
+        <div className="  p-2 offer-card-info font-primary font-light w-full tracking-wide  ">
           {/* <div className=" tracking-wider "> */}
-          <p className="  uppercase font-primary font-semibold leading-1 ">
+          <p className="  uppercase font-primary font-semibold overflow-scroll ">
             {donationOffer.description}
           </p>
-          <p className=" h-[50px] mb-60">{donationOffer.about}</p>
-          <p className=" text-primary ">{donationOffer.location}</p>
-          <p className=" text-black/30 mt-4 ">{donationOffer.available}</p>
+          <p className=" ">{donationOffer.about}</p>
+          <p className=" text-primary border-b pb-1  mb-4 w-full ">{donationOffer.location}</p>
+          <p className=" text-black/30  ">{donationOffer.available}</p>
           {/* </div> */}
         </div>
       </>

@@ -9,11 +9,14 @@ import { defaultFormValues } from './makeOfferDefaultValues';
 import { useForm } from 'react-hook-form';
 import { OfferCardType } from '@/app/types';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 const MakeOffer = () => {
   const form = useForm<OfferCardType>();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const [offerInfo, setOfferInfo] = useState(defaultFormValues);
+
 
   const showToastMessage = () =>{
     const content  = 'Submitted';
@@ -22,6 +25,7 @@ const MakeOffer = () => {
   }
   toast.success(content, options)
 }
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -68,8 +72,8 @@ const MakeOffer = () => {
             form.reset(defaultFormValues);
 
             setOfferInfo(offerInfo);
-            {<ToastContainer/>}
-      
+
+
             if (!res.ok) {
               throw new Error('Failed to fetch data');
             } else {
@@ -79,7 +83,7 @@ const MakeOffer = () => {
               },3000)
               
             }
-
+            toast.success('Donation given!');
             return res.text;
           } catch (err) {
             console.error('failed to fetch data', err);
@@ -87,6 +91,21 @@ const MakeOffer = () => {
         }
       })}
     >
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
+
       <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
         Make a Donation
       </p>
@@ -179,8 +198,10 @@ const MakeOffer = () => {
           rows={10}
           onChange={handleChange}
         ></textarea>
-         <span className='form-span'>About</span>
-        <p className="error-message text-red-600 font-primary text-lg font-light">{errors.about?.message}</p>
+        <span className="form-span">About</span>
+        <p className="error-message text-red-600 font-primary text-lg font-light">
+          {errors.about?.message}
+        </p>
       </label>
       <input
         type="submit"
