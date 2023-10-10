@@ -63,14 +63,17 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
         onSubmit={handleSubmit}
         className=" form make-offer-form flex flex-col gap-[10px] max-w-[450px] bg-white p-[20px] rounded-md relative mx-auto mt-12"
       >
+        <div className=' flex flex-row justify-between '>
         <Button
           className=" mx-auto flex   justify-center rounded-md   font-light text-md  hover:bg-accent items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  "
           action={() => handleEdit()}
           text="Cancel"
         />
-        <button onClick={showToastMessage} className=" mx-auto flex   justify-center rounded-md  hover:bg-accent  font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
-          Submit
-        </button>
+        <Button
+          action={() => handleDelete()}
+          className=" mx-auto flex  justify-center rounded-md  hover:bg-red-700  font-light text-md items-center h-[35px] w-[80px] bg-red-500 border text-fourth text-md ml-0  "          text="Delete"
+        />
+        </div>
 
         <label className="relative">
           <input
@@ -119,12 +122,13 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
           />
           <span className="form-span">Location</span>
         </label>
+        <button
+          onClick={showToastMessage}
+          className="  bg-primary  hover:bg-third h-11 cursor-pointer text-fourth font-primary text-lg "
+        >
+          Submit
+        </button>
 
-        <Button
-          action={() => handleDelete()}
-          className=" bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg "
-          text="Delete"
-        />
         <ToastContainer />
       </form>
     </>

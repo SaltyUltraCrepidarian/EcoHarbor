@@ -32,7 +32,7 @@ export default async function Home() {
           <div className="flex gap-x-4 mt-20 mb-11">
             {donationInfo.map((donationOffer, index) => (
               <section
-                className="offer-card-section flex-shrink-0 h-full "
+                className="offer-card-section flex-shrink-0 h-full bg-white "
                 key={index}
               >
                 <OfferCard donationOffer={donationOffer} isAdmin={false} />
