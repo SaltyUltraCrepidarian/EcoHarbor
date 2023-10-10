@@ -9,7 +9,7 @@ import { defaultFormValues } from './makeOfferDefaultValues';
 import { useForm } from 'react-hook-form';
 import { OfferCardType } from '@/app/types';
 
-import { ToastContainer, toast } from 'react-toastify';
+
 
 const MakeOffer = () => {
   const form = useForm<OfferCardType>();
@@ -83,7 +83,6 @@ const MakeOffer = () => {
               },3000)
               
             }
-            toast.success('Donation given!');
             return res.text;
           } catch (err) {
             console.error('failed to fetch data', err);
@@ -91,20 +90,7 @@ const MakeOffer = () => {
         }
       })}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
+
 
       <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
         Make a Donation
