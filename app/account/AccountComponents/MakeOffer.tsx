@@ -1,5 +1,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import React, { useState } from 'react';
 import './MakeOffer.css';
@@ -7,7 +9,7 @@ import { defaultFormValues } from './makeOfferDefaultValues';
 import { useForm } from 'react-hook-form';
 import { OfferCardType } from '@/app/types';
 
-import { ToastContainer, toast } from 'react-toastify';
+
 
 const MakeOffer = () => {
   const form = useForm<OfferCardType>();
@@ -15,7 +17,15 @@ const MakeOffer = () => {
   const { errors } = formState;
   const [offerInfo, setOfferInfo] = useState(defaultFormValues);
 
-  const notify = () => toast('Wow so easy!');
+
+  const showToastMessage = () =>{
+    const content  = 'Submitted';
+    const options = {
+      position: toast.POSITION.TOP_RIGHT
+  }
+  toast.success(content, options)
+}
+
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -63,12 +73,16 @@ const MakeOffer = () => {
 
             setOfferInfo(offerInfo);
 
+
             if (!res.ok) {
               throw new Error('Failed to fetch data');
             } else {
-              window.location.reload();
+              showToastMessage()
+              setTimeout(()=>{
+                window.location.reload();
+              },3000)
+              
             }
-            toast.success('Donation given!');
             return res.text;
           } catch (err) {
             console.error('failed to fetch data', err);
@@ -76,20 +90,7 @@ const MakeOffer = () => {
         }
       })}
     >
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
+
 
       <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
         Make a Donation
@@ -190,8 +191,10 @@ const MakeOffer = () => {
       </label>
       <input
         type="submit"
+
         className=" bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg "
       />
+      <ToastContainer/>
     </form>
   );
 };
