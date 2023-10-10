@@ -1,5 +1,7 @@
 'use client';
 export const dynamic = 'force-dynamic';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import React, { useState } from 'react';
 import './MakeOffer.css';
@@ -12,6 +14,14 @@ const MakeOffer = () => {
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const [offerInfo, setOfferInfo] = useState(defaultFormValues);
+
+  const showToastMessage = () =>{
+    const content  = 'Submitted';
+    const options = {
+      position: toast.POSITION.TOP_RIGHT
+  }
+  toast.success(content, options)
+}
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -58,10 +68,16 @@ const MakeOffer = () => {
             form.reset(defaultFormValues);
 
             setOfferInfo(offerInfo);
+            {<ToastContainer/>}
+      
             if (!res.ok) {
               throw new Error('Failed to fetch data');
             } else {
-              window.location.reload();
+              showToastMessage()
+              setTimeout(()=>{
+                window.location.reload();
+              },3000)
+              
             }
 
             return res.text;
@@ -168,8 +184,10 @@ const MakeOffer = () => {
       </label>
       <input
         type="submit"
+
         className=" bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg "
       />
+      <ToastContainer/>
     </form>
   );
 };
