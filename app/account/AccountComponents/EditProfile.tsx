@@ -4,6 +4,9 @@ import React, { useState } from 'react';
 import ImageUpload from './ImageUpload';
 import { useForm } from 'react-hook-form';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 type Props = {
   handleEdit: Function;
   userData: User;
@@ -24,6 +27,14 @@ export default function EditProfile({ handleEdit, userData }: Props) {
     businessPhoneNr: userData.businessPhoneNr,
     businessAdress: userData.businessAdress,
   });
+
+  const showToastMessage = () => {
+    const content = 'Submitted';
+    const options = {
+      position: toast.POSITION.TOP_RIGHT,
+    };
+    toast.success(content, options);
+  };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProfileValues((prevState) => ({
@@ -46,7 +57,10 @@ export default function EditProfile({ handleEdit, userData }: Props) {
           });
           setProfileValues(profileValues);
           if (res.status === 200) {
-            window.location.reload();
+            showToastMessage();
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
           }
           return res.text;
         })}
@@ -139,7 +153,9 @@ export default function EditProfile({ handleEdit, userData }: Props) {
           />
           <span className="form-span">Phone Number </span>
 
-          <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessPhoneNr?.message}</p>
+          <p className="error-message text-red-600 font-primary text-lg font-light">
+            {errors.businessPhoneNr?.message}
+          </p>
         </label>
 
         <label className="relative">
@@ -157,7 +173,9 @@ export default function EditProfile({ handleEdit, userData }: Props) {
           />
           <span className="form-span">Business Address </span>
 
-          <p className="error-message text-red-600 font-primary text-lg font-light">{errors.businessAdress?.message}</p>
+          <p className="error-message text-red-600 font-primary text-lg font-light">
+            {errors.businessAdress?.message}
+          </p>
         </label>
 
         <button
@@ -180,6 +198,7 @@ export default function EditProfile({ handleEdit, userData }: Props) {
           text="Delete"
         />
       </section>
+      <ToastContainer />
     </>
   );
 }
