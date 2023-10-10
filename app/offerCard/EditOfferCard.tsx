@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { OfferCardType } from '../types';
 import Button from '../Components/Button';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 type Props = {
   handleEdit: Function;
   donationOffer: OfferCardType;
@@ -16,6 +19,14 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
     about: donationOffer.about,
     createdAt: donationOffer.createdAt,
   });
+
+  const showToastMessage = () => {
+    const content = 'Submitted';
+    const options = {
+      position: toast.POSITION.TOP_RIGHT,
+    };
+    toast.success(content, options);
+  };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOfferValues((prevState) => ({
@@ -32,6 +43,7 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
       },
       body: JSON.stringify(donationOffer.id),
     });
+
     return res.text;
   };
 
@@ -43,81 +55,83 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
       },
       body: JSON.stringify(offerValues),
     });
+    showToastMessage();
+
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
     return res.text;
   };
   return (
     <>
-     
-        <form
-          onSubmit={handleSubmit}
-          className=" form make-offer-form flex flex-col gap-[10px] max-w-[450px] bg-white p-[20px] rounded-md relative mx-auto mt-12"
-        >
-          <Button
-            className=" mx-auto flex   justify-center rounded-md   font-light text-md  hover:bg-accent items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  "
-            action={() => handleEdit()}
-            text="Cancel"
+      <form
+        onSubmit={handleSubmit}
+        className=" form make-offer-form flex flex-col gap-[10px] max-w-[450px] bg-white p-[20px] rounded-md relative mx-auto mt-12"
+      >
+        <Button
+          className=" mx-auto flex   justify-center rounded-md   font-light text-md  hover:bg-accent items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  "
+          action={() => handleEdit()}
+          text="Cancel"
+        />
+        <button className=" mx-auto flex   justify-center rounded-md  hover:bg-accent  font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
+          Submit
+        </button>
+
+        <label className="relative">
+          <input
+            className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
+            type="text"
+            name="description"
+            onChange={handleOnChange}
+            value={offerValues.description}
+            required
           />
-          <button className=" mx-auto flex   justify-center rounded-md  hover:bg-accent  font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
-            Submit
-          </button>
+          <span className="form-span">Description</span>
+        </label>
 
-          <label className="relative">
-            <input
-              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
-              type="text"
-              name="description"
-              onChange={handleOnChange}
-              value={offerValues.description}
-              required
-            />
-            <span className="form-span">Description</span>
-          </label>
-
-          <label className="relative">
-            <input
-              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
-              type="text"
-              name="available"
-              onChange={handleOnChange}
-              value={offerValues.available}
-              required
-            />
-            <span className="form-span">Available</span>
-          </label>
-
-          <label className="relative">
-            <input
-              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
-              type="text"
-              name="location"
-              onChange={handleOnChange}
-              value={offerValues.location}
-              required
-            />
-            <span className="form-span">Location</span>
-          </label>
-
-          <label className="relative">
-            <input
-              className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
-              type="text"
-              name="about"
-              onChange={handleOnChange}
-              value={offerValues.about}
-              required
-            />
-            <span className="form-span">Location</span>
-          </label>
-
-        
-          <Button
-            action={() => handleDelete()}
-            className=" bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg "
-
-            text="Delete"
+        <label className="relative">
+          <input
+            className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
+            type="text"
+            name="available"
+            onChange={handleOnChange}
+            value={offerValues.available}
+            required
           />
-        </form>
+          <span className="form-span">Available</span>
+        </label>
 
+        <label className="relative">
+          <input
+            className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
+            type="text"
+            name="location"
+            onChange={handleOnChange}
+            value={offerValues.location}
+            required
+          />
+          <span className="form-span">Location</span>
+        </label>
+
+        <label className="relative">
+          <input
+            className=" input w-full outline-none px-[8px] py-[16px] border-b opacity-40  "
+            type="text"
+            name="about"
+            onChange={handleOnChange}
+            value={offerValues.about}
+            required
+          />
+          <span className="form-span">Location</span>
+        </label>
+
+        <Button
+          action={() => handleDelete()}
+          className=" bg-primary hover:bg-accent h-11 cursor-pointer text-fourth font-primary text-lg "
+          text="Delete"
+        />
+        <ToastContainer />
+      </form>
     </>
   );
 }
