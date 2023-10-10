@@ -55,11 +55,6 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
       },
       body: JSON.stringify(offerValues),
     });
-    showToastMessage();
-
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 3000);
     return res.text;
   };
   return (
@@ -73,7 +68,7 @@ export default function EditOfferCard({ handleEdit, donationOffer }: Props) {
           action={() => handleEdit()}
           text="Cancel"
         />
-        <button className=" mx-auto flex   justify-center rounded-md  hover:bg-accent  font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
+        <button onClick={showToastMessage} className=" mx-auto flex   justify-center rounded-md  hover:bg-accent  font-light text-md items-center h-[35px] w-[80px] bg-primary border text-fourth text-md ml-0  ">
           Submit
         </button>
 
