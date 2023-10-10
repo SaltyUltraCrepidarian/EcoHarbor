@@ -58,6 +58,8 @@ const MakeOffer = () => {
             form.reset(defaultFormValues);
 
             setOfferInfo(offerInfo);
+            alert('Donation submitted!');
+
             if (!res.ok) {
               throw new Error('Failed to fetch data');
             } else {
@@ -68,7 +70,7 @@ const MakeOffer = () => {
           } catch (err) {
             console.error('failed to fetch data', err);
           }
-        }
+        }        
       })}
     >
       <p className=" title font-primary font-medium text-3xl text-primary tracking-tighter relative flex items-center pl-[30px]">
